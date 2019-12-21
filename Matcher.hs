@@ -8,9 +8,7 @@ import Data.Aeson                                 ( FromJSON ( parseJSON ), Valu
 import Data.Aeson.Types                           ( Parser )
 import Data.HashMap.Strict                        ( elems )
 import qualified Data.Text as Text                ( pack )
-import Network.Socket                             ( withSocketsDo )
 import Network.HTTP.Conduit                       ( simpleHttp, HttpException )
-import GHC.IO.Encoding                            ( setLocaleEncoding, utf8 )
 import qualified Data.ByteString.Lazy.Char8 as BS
 
 
@@ -36,9 +34,11 @@ instance FromJSON Wishlist where
 fetchWishlist :: Friend -> MaybeT IO [Game]
 fetchWishlist = undefined
 
+-- The created string can be theoretically used for querying the wishlists.
+-- However, this requires a reverse proxy, since Steam is very restrictive in its CORS policy.
 mkWishlistQuery :: Friend -> String
 mkWishlistQuery f = prefix ++ friendQuery ++ suffix where
-    prefix = "https://store.steampowered.com/wishlist/"
+    prefix = "http://store.steampowered.com/wishlist/"
     suffix = "/wishlistdata/"
 
     friendQuery = case f of
@@ -49,9 +49,3 @@ mkWishlistQuery f = prefix ++ friendQuery ++ suffix where
 
 (.@) :: FromJSON a => Object -> String -> Parser a
 m .@ str = m .: Text.pack str
-
-main :: IO ()
-main = withSocketsDo $ do
-    setLocaleEncoding utf8
-    b <- simpleHttp (mkWishlistQuery (Profile 76561198071056084))
-    putStrLn (show b)
