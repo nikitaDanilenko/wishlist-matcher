@@ -100,5 +100,4 @@ main = do
     gs <- fmap (map Game . lines) (readFile "games.txt")
     let wlg = readWishlistsWith gs fbs
         matching = findMatching wlg
-    print wlg
-    putStrLn (show matching)
+    mapM_ print matching
