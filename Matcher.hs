@@ -12,12 +12,13 @@ import Data.Map                                   ( Map, fromList, (!), size )
 import qualified Data.Text as Text                ( pack )
 import Network.HTTP.Conduit                       ( simpleHttp, HttpException )
 import qualified Data.ByteString.Lazy.Char8 as BS
-import Data.List                                  ( intersect )
+import Data.List                                  ( intersect, isSuffixOf )
 import Data.Maybe                                 ( maybe )
 import Graph.Graph                                ( GraphLL )
 import Graph.MaximumMatching                      ( maximumMatching )
 import Auxiliary.General                          ( Mat )
 import Algebraic.Matrix                           ( fromMat, symmetricClosure, toMat )
+import System.Directory                           ( getDirectoryContents )
 
 data Friend = Profile Integer
             | Id String
@@ -53,13 +54,13 @@ mkWishlistQuery f = prefix ++ friendQuery ++ suffix where
         Id name   -> "id/" ++ name
 
 readWishlistWith :: [Game] -> BS.ByteString -> [Game]
-readWishlistWith gs ws = maybe [] (intersect gs) (decode ws)
+readWishlistWith gs ws = maybe [] (intersect gs . (\(Wishlist l) -> l)) (decode ws :: Maybe Wishlist)
 
 data WishlistGraph = WG { 
     numberedFriends :: Map Int Friend, 
     numberedGames :: Map Int Game, 
     associations :: GraphLL ()
-}
+} deriving Show
 
 readWishlistsWith :: [Game] -> [(Friend, BS.ByteString)] -> WishlistGraph
 readWishlistsWith gs fws = 
@@ -83,3 +84,21 @@ findMatching (WG nfs ngs graph) = result where
 -- Shorthand for accessing fields in a JSON object.
 (.@) :: FromJSON a => Object -> String -> Parser a
 m .@ str = m .: Text.pack str
+
+wishlistsFolder :: String
+wishlistsFolder = "wishlists"
+
+processFile :: String -> IO (Friend, BS.ByteString)
+processFile file = do
+    text <- BS.readFile (wishlistsFolder ++ "/" ++ file)
+    return (Profile (read (takeWhile (/= '.') file)), text)
+
+main :: IO ()
+main = do
+    fs <- getDirectoryContents wishlistsFolder
+    fbs <- mapM processFile (filter (isSuffixOf ".json") fs)
+    gs <- fmap (map Game . lines) (readFile "games.txt")
+    let wlg = readWishlistsWith gs fbs
+        matching = findMatching wlg
+    print wlg
+    putStrLn (show matching)
