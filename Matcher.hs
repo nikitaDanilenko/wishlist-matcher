@@ -8,7 +8,7 @@ import Data.Aeson                                 ( FromJSON ( parseJSON ), Valu
                                                     (.:), decode, Object )
 import Data.Aeson.Types                           ( Parser )
 import Data.HashMap.Strict                        ( elems )
-import Data.Map                                   ( Map, fromList, (!), size )
+import Data.Map                                   ( Map, fromList, (!), size, delete )
 import qualified Data.Text as Text                ( pack )
 import Network.HTTP.Conduit                       ( simpleHttp, HttpException )
 import qualified Data.ByteString.Lazy.Char8 as BS
@@ -19,8 +19,7 @@ import Graph.MaximumMatching                      ( maximumMatching )
 import Auxiliary.General                          ( Mat )
 import Algebraic.Matrix                           ( fromMat, symmetricClosure, toMat )
 import System.Directory                           ( getDirectoryContents )
-import Data.Map                                   ( Map, fromList )
-import qualified Data.Map as M                    ( lookup )
+import qualified Data.Map as M                    ( lookup, elems )
 
 data Friend = Profile Integer
             | Id String
@@ -105,6 +104,9 @@ mkAssociations = do
         ps = map ((\(i : rest) -> (Profile (read i), unwords rest)) . words) ls
     pure (fromList ps)
 
+deleteAll :: Ord k => [k] -> Map k a -> Map k a
+deleteAll ks m = foldr delete m ks
+
 main :: IO ()
 main = do
     fs <- getDirectoryContents wishlistsFolder
@@ -113,4 +115,6 @@ main = do
     let wlg = readWishlistsWith gs fbs
         matching = findMatching wlg
     nameMap <- mkAssociations
-    mapM_ (print . (\(i, (f, Game g)) -> concat [show i, ": ", show f, " (", fromMaybe "???" (M.lookup f nameMap), ")", " - ", g])) (zip [1..] matching)
+    mapM_ (putStrLn . (\(i, (f, Game g)) -> concat [show i, ": ", show f, " (", fromMaybe "???" (M.lookup f nameMap), ")", " - ", g])) (zip [1..] matching)
+    putStrLn "unmatched: "
+    mapM_ putStrLn (M.elems (deleteAll (map fst matching) nameMap))
