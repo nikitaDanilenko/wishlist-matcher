@@ -1,7 +1,6 @@
 >observer_
 2064: Read Only Memories
 60 Parsecs!
-7 Days to Die
 7 Grand Steps
 911 Operator
 911 Operator - Special Resources DLC
@@ -120,10 +119,7 @@ Deep Dungeons of Doom
 Deponia Doomsday
 Deponia Doomsday Soundtrack
 Deponia: The Complete Journey
-Detective Case and Clown Bot in: Murder in the Hotel Lisbon
 Dimension Jump
-Dino Run DX
-Distance
 Distrust
 Do Not Feed the Monkeys
 Don't Stand Out
@@ -139,7 +135,6 @@ Dungeon Escape
 Dungeon of the Endless
 Dungeons 2
 Dungeons 3
-Duskers
 Dusty Revenge: Co-Op Edition
 EARTH DEFENSE FORCE 4.1 The Shadow of New Despair
 EARTH DEFENSE FORCE 4.1: Blood Storm
@@ -206,7 +201,6 @@ Harald: A Game of Influence
 Hard Reset Redux
 Headlander
 Hearts of Iron IV
-Hellblade: Senua's Sacrifice
 Hello Pollution!
 HERO DEFENSE
 HITMAN™: THE COMPLETE FIRST SEASON
@@ -231,7 +225,6 @@ Kentucky Route Zero
 Kerbal Space Program
 Kholat
 King and Assassins
-Kingdom Come: Deliverance
 Kingdom: New Lands
 Kona
 Lakeview Cabin Collection
@@ -257,7 +250,6 @@ Magicka 2
 Marvin's Mittens
 Master Spy
 Match Point
-Memoria Soundtrack
 MetaMorph: Dungeon Creatures
 Mighty No. 9
 Mimic Arena
@@ -269,7 +261,6 @@ Misadventures of Laura Silver: Chapter 1
 Monster Loves You
 Monster Prom
 Moon Hunters
-Moonlighter
 MOTHERGUNSHIP
 Motorsport Manager
 Mr. Shifty
@@ -287,7 +278,6 @@ Ninja Senki DX
 No Time to Explain
 No Time To Explain Remastered
 No Time To Explain Remastered
-Northgard
 Octodad Dadliest Catch
 Offensive Combat: Redux!
 Old Man's Journey
@@ -397,7 +387,6 @@ Streamline Early Access
 Stronghold Legends: Steam Edition
 Styx: Shards of Darkness
 Subnautica
-Subterrain
 Sudden Strike 4
 Super Chicken Catchers
 Super Galaxy Squadron EX
@@ -467,7 +456,6 @@ Volgarr the Viking
 VVVVVV
 War for the Overworld - Yogscast Worker Skin
 Warhammer 40,000: Dawn of War III
-Warhammer 40,000: Mechanicus
 Warhammer: End Times - Vermintide Drachenfels DLC
 Warhammer: End Times - Vermintide Item: Razorfang Poison
 Warhammer: End Times – Vermintide
@@ -494,3 +482,208 @@ Zero Reflex: Black Eye Edition
 Ziggurat
 Zombie Army Trilogy
 Zombie Night Terror
+Train Valley 2
+A Good Snowman is Hard to Build
+A Mortician's Tale
+Agents of Mayhem
+Alien Spidy
+Broken Age
+Brothers: A Tale of Two Sons
+Brutal Legend
+Darksiders II Deathinitive Edition
+Darksiders Warmastered Edition
+DUCATI - 90th Anniversary
+Europa Universalis IV
+Fahrenheit: Indigo Prophecy Remastered
+GNOG
+Hacknet
+HIVESWAP: Act 1
+Hollow Knight
+Into the Breach
+Jackbox Party Pack 2
+Killing Floor 2
+LEGO Batman 3: Beyond Gotham
+Lostwinds
+Magicka
+PAC-MAN™ CHAMPIONSHIP EDITION 2
+Party Hard
+Pikuniku
+Psychonauts
+Rebuild 3: Gangs of Deadsville
+Sniper Elite 3
+Speed Brawl
+Starfinder: Pact Worlds Campaign Setting
+Stealth 2: A Game of Clones
+Stick Fight: The Game
+Super Hexagon
+SUPERHOT
+This is the Police
+Tilt Brush
+Totally Accurate Battle Simulator
+Tropico 4
+VVVVVV
+The Witness
+Wizard of Legend
+Worms Revolution
+Zombotron
+The Adventure Pals
+Assault Android Cactus
+Duck Game
+Euro Truck Simulator 2
+Euro Truck Simulator 2: Australia Paint Pack DLC
+Feather
+Frog Detective
+Hacknet
+Hacknet Labyrinths DLC
+Hollow Knight
+Machinarium
+Mr. Shifty
+Paper Fire Rookie
+Paradigm
+Primal Carnage: Extinction
+Quest of Dungeons
+Regular Human Basketball
+Rising Dusk
+Tower of Guns
+Void Bastards
+Darksiders III
+Yakuza Kiwami 2
+Imperator: Rome
+Crying Suns
+Darksburg
+Little Misfortune
+Smile For Me
+Darkwood
+Tsioque
+Rover Mechanic Simulator
+Youropa
+Townsmen - A Kingdom Rebuilt
+Tropico 6 - El Prez Edition
+Fae Tactics
+Sunless Bundle (Sunless Skies + Sunless Sea)
+Iron Danger
+Autonauts
+Shadows: Awakening
+Fantasy Blacksmith
+The Suicide of Rachel Foster
+GOAT OF DUTY
+The Uncertain: Last Quiet Day
+Basement
+Lightmatter
+Golf with Your Friends + Caddypack DLC + OST
+Generation Zero
+Vampire: The Masquerade – Coteries of New York
+Fun with Ragdolls: The Game
+Lethal League Blaze
+Strange Brigade
+Evoland: Legendary Edition
+Catherine Classic
+The Occupation
+The Shapeshifting Detective
+Vampyr
+Hello Neighbor + Hello Neighbor: Hide and Seek
+Wargroove
+Call of Cthulhu
+Little Big Workshop
+Genesis Alpha One Deluxe Edition
+Automachef
+Through the Darkest of Times
+American Fugitive
+The Coma 2: Vicious Sisters
+We Were Here Together
+A Case of Distrust
+Age of Wonders: Planetfall Deluxe Edition
+Void Bastards
+Railway Empire
+Battlestar Galactica Deadlock
+Yuppie Psycho
+Beat Hazard 2
+Sigma Theory: Global Cold War
+Metal Unit
+Don't Escape: 4 Days to Survive
+Verlet Swing
+Basingstoke
+Earthlock
+GRID Ultimate Edition
+Hellblade: Senua's Sacrifice
+The Messenger
+Felix The Reaper
+Men of War: Assault Squad 2 - War Chest Edition
+Stygian: Reign of the Old Ones
+Remnants of Naezith
+Overload
+The Stillness of the Wind
+The King's Bird
+Jurassic World Evolution + 1 DLC
+XCOM® 2 + 2 DLC
+Rise of Industry
+Niche - a genetics survival game
+Warhammer 40,000: Gladius - Relics of War
+The Swords of Ditto: Mormo's Curse
+Warsaw
+Heave Ho
+MO:Astray
+Neoverse
+Chess Ultra
+Horace
+HITMAN 2
+GRIS
+This Is the Police 2
+Opus Magnum
+MOLEK-SYNTEZ
+Raiden V: Director's Cut
+Driftland: The Magic Revival
+Turok 2: Seeds of Evil
+Trüberbrook
+The Bard's Tale IV: Director's Cut
+Shoppe Keep 2
+Capitalism 2
+Planet Coaster + 1 DLC
+F1 2019 Anniversary Edition
+Fell Seal: Arbiter's Mark
+Battle Chasers: Nightwar
+EXAPUNKS
+Turok
+Death's Gambit
+198X
+Niffelheim
+AI War 2
+Etherborn
+Frostpunk + 1 DLC
+Pathfinder: Kingmaker Explorer Edition
+Book of Demons
+CryoFall
+Okami HD
+Eliza
+SHENZHEN I/O
+Project Warlock
+The Hex
+Warstone TD
+Underhero
+Night Call
+Middle-earth™: Shadow of War™
+Graveyard Keeper
+Two Point Hospital
+DiRT Rally 2.0 + 3 DLCs
+Street Fighter V
+Bad North: Jotunn Edition
+Trailmakers
+Unrailed!
+Whispers of a Machine
+Them's Fightin' Herds
+Mages of Mystralia
+GRIP + 1 DLC
+Blasphemous
+Ancestors Legacy
+Phantom Doctrine
+Dead In Vinland
+Horizon Chase Turbo
+Dark Future: Blood Red States
+X-Morph: Defense
+Desert Child
+Overcooked! 2
+Children of Morta
+The Beast Inside
+Shining resonance refrain
+Zwei: The Arges Adventure
+Zwei: The Ilvard Insurrection
