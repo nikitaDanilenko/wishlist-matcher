@@ -13,16 +13,18 @@ import qualified Data.Text as Text                ( pack )
 import Network.HTTP.Conduit                       ( simpleHttp, HttpException )
 import qualified Data.ByteString.Lazy.Char8 as BS
 import Data.List                                  ( intersect, isSuffixOf )
-import Data.Maybe                                 ( maybe )
+import Data.Maybe                                 ( maybe, fromMaybe )
 import Graph.Graph                                ( GraphLL )
 import Graph.MaximumMatching                      ( maximumMatching )
 import Auxiliary.General                          ( Mat )
 import Algebraic.Matrix                           ( fromMat, symmetricClosure, toMat )
 import System.Directory                           ( getDirectoryContents )
+import Data.Map                                   ( Map, fromList )
+import qualified Data.Map as M                    ( lookup )
 
 data Friend = Profile Integer
             | Id String
-            deriving (Eq, Show, Read)
+            deriving (Eq, Ord, Show, Read)
 
 data Game = Game String
     deriving (Show, Eq, Ord)
@@ -93,6 +95,16 @@ processFile file = do
     text <- BS.readFile (wishlistsFolder ++ "/" ++ file)
     return (Profile (read (takeWhile (/= '.') file)), text)
 
+associationsFile :: String
+associationsFile = "associations.txt"
+
+mkAssociations :: IO (Map Friend String)
+mkAssociations = do
+    text <- readFile associationsFile
+    let ls = lines text
+        ps = map ((\(i : rest) -> (Profile (read i), unwords rest)) . words) ls
+    pure (fromList ps)
+
 main :: IO ()
 main = do
     fs <- getDirectoryContents wishlistsFolder
@@ -100,4 +112,5 @@ main = do
     gs <- fmap (map Game . lines) (readFile "games.txt")
     let wlg = readWishlistsWith gs fbs
         matching = findMatching wlg
-    mapM_ print matching
+    nameMap <- mkAssociations
+    mapM_ (print . (\(i, (f, Game g)) -> concat [show i, ": ", show f, " (", fromMaybe "???" (M.lookup f nameMap), ")", " - ", g])) (zip [1..] matching)
