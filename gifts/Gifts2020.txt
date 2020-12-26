@@ -19,7 +19,7 @@
 19: Duder - Game Dev Studio
 20: Ego-Tuning - Team Racing League
 21: Trappen - Shining Resonance Refrain
-22: richie - Stick Fight: The Game
+22: richie - Stick Fight: The Game; Flux8
 23: Der Stratege - Yakuza 0
 24: FoXX - Tabletop Playground
 25: Neov - GNOG
