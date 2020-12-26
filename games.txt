@@ -1,10 +1,14 @@
 >observer_
+198X
 2064: Read Only Memories
 60 Parsecs!
 7 Grand Steps
 911 Operator
 911 Operator - Special Resources DLC
+A Case of Distrust
 A Glider's Journey
+A Good Snowman is Hard to Build
+A Mortician's Tale
 A Story About My Uncle
 A Virus Named Tom
 Aaero
@@ -12,14 +16,19 @@ Abalone
 Absolver
 Acceleration of SUGURI 2
 Adventure Boy Cheapskate DX
+Age of Wonders: Planetfall Deluxe Edition
 Agricola: All Creatures Big and Small
+AI War 2
 AI War: Fleet Command
 Alan Wake's American Nightmare
 ALICE VR
+Alien Spidy
 All-Star Fruit Racing - Yogscast Car DLC
 Almost There: The Platformer
 Always Sometimes Monsters
+American Fugitive
 American Truck Simulator
+Ancestors Legacy
 Animal Super Squad
 Animal Super Squad
 Anna's Quest
@@ -35,7 +44,10 @@ Anomaly: Warzone Earth
 Anomaly: Warzone Earth
 ARMA Gold Edition
 Artemis: God-Queen of The Hunt
+Assault Android Cactus
 Auto Age: Standoff
+Automachef
+Autonauts
 Avernum 3: Ruined World
 Aviary Attorney
 Awesomenauts Yogscast Pack - Coco Nebulon
@@ -43,45 +55,59 @@ Awesomenauts Yogscast Pack - Max Focus
 Awesomenauts Yogscast Pack - Ted McPain
 Awesomenauts Yogscast Pack – Skolldir
 Back to Bed
+Bad North: Jotunn Edition
 Balancelot
 Ballistick
-Bastion
+Basement
+Basingstoke
 Batalj BETA
 Batalj BETA Friend Key
+Battle Chasers: Nightwar
 Battle Chef Brigade
 Battle Riders
 Battlerite DLC: YogYog Bear Mount
+Battlestar Galactica Deadlock
 BATTLETECH
 BATTLETECH - Flashpoint
 BATTLETECH - Shadow Hawk Pack
 Battlevoid: Harbinger
+Beat Hazard 2
 Beat Hazard Ultra
 Bezier
 Blacksmith
 Blackwake
 Blade & Bones
+Blasphemous
 BlazBlue: Chronophantasma Extend
 Bleed 2
 Blockstorm
 Board Battlefield
 Bomb Defense
+Book of Demons
 Border Force
 Bounty Train
+Broken Age
 Broken Sword 5: The Serpent's Curse
+Brothers: A Tale of Two Sons
+Brutal Legend
+Call of Cthulhu
 Call of Duty®: WWII
+Capitalism 2
 Caravan
 Carcassonne - Tiles & Tactics
 CardLife: Cardboard Survival
 Cathedral
+Catherine Classic
 Caveblazers
 Caveblazers - Arena Mode DLC
 Chainsaw Warrior
 Chasm
+Chess Ultra
+Children of Morta
 Chivalry: Medieval Warfare
 Chivalry: Medieval Warfare
 Chivalry: Medieval Warfare
 Chroma Squad
-Chronology
 Cities: Skylines - Snowfall
 Cities: Skylines + After Dark DLC
 Civilization VI - Australia Civilization & Scenario Pack
@@ -100,18 +126,27 @@ Cosmonautica
 Crash Bandicoot™ N. Sane Trilogy
 Crusader Kings II: Dynasty Starter Pack
 Crusaders of the Lost Idols - Elite Starter Pack
+Crying Suns
+CryoFall
 Cursed Castilla (Maldita Castilla EX)
 Dandara
 Dangerous High School Girls in Trouble
+Dark Future: Blood Red States
 DARK SOULS™ III
 DARK SOULS™ III - Ashes of Ariandel™
 Darkest Dungeon
+Darksburg
 Darkside Detective
+Darksiders II Deathinitive Edition
 Darksiders II: Deathinitive Edition
+Darksiders III
+Darksiders Warmastered Edition
+Darkwood
 Day of the Tentacle
 Dead by Daylight - Curtain Call
 Dead by Daylight - Of Flesh and Mud
 Dead by Daylight - Spark of Madness
+Dead In Vinland
 Dead Rising 4
 Deadlight: Director's Cut
 Deep Dungeons of Doom
@@ -119,16 +154,22 @@ Deep Dungeons of Doom
 Deponia Doomsday
 Deponia Doomsday Soundtrack
 Deponia: The Complete Journey
+Desert Child
 Dimension Jump
+DiRT Rally 2.0
 Distrust
 Do Not Feed the Monkeys
+Don't Escape: 4 Days to Survive
 Don't Stand Out
 Double Fine Adventure Documentary
 Downtown Drift
 Draw Your Game
 Dreadlands
 Dreaming Sarah
+Driftland: The Magic Revival
 Drink More Glurp Jingle Jam Challenge
+DUCATI - 90th Anniversary
+Duck Game
 Duck Game
 DUCKGAME
 Dungeon Escape
@@ -155,12 +196,26 @@ EARTH DEFENSE FORCE 4.1: Reflectron Laser
 EARTH DEFENSE FORCE 4.1: Spark Lancer
 EARTH DEFENSE FORCE 4.1: Sting Shot
 EARTH DEFENSE FORCE 4.1: Volatile Napalm
+Earthlock
+Eliza
 Ellipsis
 Eon Altar Episode 1
-Everything
+Etherborn
+Euro Truck Simulator 2
+Euro Truck Simulator 2: Australia Paint Pack DLC
+Europa Universalis IV
+Evoland: Legendary Edition
+EXAPUNKS
 F.E.X (Forced Evolution Experiment)
+F1 2019 Anniversary Edition
+Fae Tactics
 Fahrenheit: Indigo Prophecy Remastered
+Fahrenheit: Indigo Prophecy Remastered
+Fantasy Blacksmith
 Fearless Fantasy
+Feather
+Felix The Reaper
+Fell Seal: Arbiter's Mark
 Fighting Fantasy Legends
 Fighting Fantasy Legends Portal
 Figment Soundtrack
@@ -170,19 +225,26 @@ Fluffy Horde
 Flux8
 Forged Battalion
 Freaky Awesome
-Full Metal Furies
+Frog Detective
+Fun with Ragdolls: The Game
 Galak-Z
-Game Dev Studio
 Gang Beasts
 Gangs of Space Jingle Jam Pack
 Garry's Mod
+Generation Zero
+Genesis Alpha One Deluxe Edition
 Glittermitten Grove
+GOAT OF DUTY
 Goat Simulator: GOATY
 GOD EATER 2 Rage Burst
 God's Trigger
+Golf with Your Friends + Caddypack DLC + OST
 GRAV (Early Access)
+Graveyard Keeper
 Grey Goo
+GRID Ultimate Edition
 Grimm & Tonic
+GRIP
 GUILTY GEAR Xrd -SIGN-
 GUILTY GEAR Xrd REV 2
 Gunpoint
@@ -195,62 +257,88 @@ Guns of Icarus Alliance Yogscast 2017 Costume Pack
 Guns of Icarus Online
 Gurgamoth
 H1Z1
+Hacknet
+Hacknet
+Hacknet Labyrinths DLC
 HackyZack
 Hand of Fate
 Harald: A Game of Influence
 Hard Reset Redux
 Headlander
 Hearts of Iron IV
+Heave Ho
+Hellblade: Senua's Sacrifice
+Hello Neighbor + Hello Neighbor: Hide and Seek
 Hello Pollution!
 HERO DEFENSE
+HITMAN 2
 HITMAN™: THE COMPLETE FIRST SEASON
+HIVESWAP: Act 1
+Hollow Knight
+Hollow Knight
 Holy Potatoes! We're in Space?!
+Horace
+Horizon Chase Turbo
 Hyperdrive Massacre
 I'm not a Monster
 Idle Champions of the Forgotten Realms -- Celeste Starter Pack
 Immortal Redneck
+Imperator: Rome
 In memory of TITAN
 Intelligent Design: An Evolutionary Sandbox
 Interplanetary: Enhanced Edition
 Invisible Inc.
+Iron Danger
+Jackbox Party Pack 2
 Jalopy
 Jump Stars
 JumpJet Rex
+Jurassic World Evolution
 Jurassic World Evolution - Ankylosaurus skin (Vivid Variant)
 Just Cause 3 XXL Edition
 Kabounce
 Kalaban
-Ken Follett's The Pillars of the Earth
 Kentucky Route Zero
 Kerbal Space Program
 Kholat
+Killing Floor 2
 King and Assassins
 Kingdom: New Lands
-Kona
 Lakeview Cabin Collection
 Lakeview Cabin Collection
 Lara Croft GO
 Last Encounter
 Le Havre: The Inland Port
 Legend of Grimrock 2
+LEGO Batman 3: Beyond Gotham
 Lethal League
 Life is Strange Complete Season (Episodes 1-5)
+Lightmatter
 Lion Quest
+Little Big Workshop
+Little Misfortune
 Little Nightmares
 Lost Castle
 Lost in the Dungeon
+Lostwinds
 LostWinds 2: Winter of the Melodias
 LOVE
 Luna's Wandering Stars
+Machinarium
 Machinarium Collector's Edition
 Mafia III
 Mafia III: Sign of the Times
+Mages of Mystralia
+Magicka
 Magicka
 Magicka 2
 Marvin's Mittens
 Master Spy
 Match Point
+Men of War: Assault Squad 2 - War Chest Edition
+Metal Unit
 MetaMorph: Dungeon Creatures
+Middle-earth™: Shadow of War™
 Mighty No. 9
 Mimic Arena
 Mindball Play
@@ -258,52 +346,69 @@ Minecraft: Story Mode - A Telltale Games Series
 MINIT
 Mirage: Arcane Warfare
 Misadventures of Laura Silver: Chapter 1
+MO:Astray
+MOLEK-SYNTEZ
 Monster Loves You
 Monster Prom
 Moon Hunters
 MOTHERGUNSHIP
 Motorsport Manager
 Mr. Shifty
-Mushroom 11
+Mr. Shifty
 Must Dash Amigos
 Mutant Year Zero: Road to Eden
 My Time at Portia
 NAIRI: Tower of Shirin
 NASCAR Heat 2 - October Jumbo Expansion
-NBA Playgrounds
 Nemo Dungeon
 Neon Drive (Steam)
+Neoverse
 NeuroVoider
+Niche - a genetics survival game
+Night Call
 Ninja Senki DX
 No Time to Explain
 No Time To Explain Remastered
 No Time To Explain Remastered
 Octodad Dadliest Catch
 Offensive Combat: Redux!
+Okami HD
 Old Man's Journey
 On Rusty Trails
+Opus Magnum
 Outlast 2
+Overcooked! 2
 Overgrowth
-Overgrowth Steam key
+Overgrowth
+Overload
 Override: Mech City Brawl
-Owlboy
+PAC-MAN™ CHAMPIONSHIP EDITION 2
 PAC-MAN™ CHAMPIONSHIP EDITION 2
 Painters Guild
 Pandemic: The Board Game
+Paper Fire Rookie
 Paratopic
 Partial Control
+Party Hard
 Pathfinder Adventures
 Pathfinder Adventures
+Pathfinder: Kingmaker Explorer Edition
 Pathologic Classic HD
 Perfect Heist
+Phantom Doctrine
+Pikuniku
 Pizza Titan Ultra
 Planet Alpha
+Planet Coaster
 Pool Panic
 Potatoman Seeks the Troof
 Potatoman Seeks the Troof
 Primal Carnage: Extinction
 Primal Carnage: Extinction
+Primal Carnage: Extinction
 Project CARS 2
+Project Warlock
+Psychonauts
 Psychonauts
 Psychonauts
 Pumped BMX +
@@ -312,21 +417,26 @@ Puss!
 Q.U.B.E: Director's Cut
 Q.U.B.E: Director's Cut
 Q.U.B.E. 2
+Quest of Dungeons
 R-COIL
 Race The Sun
+Raiden V: Director's Cut
+Railway Empire
 Rampage Knights
-Rapture Rejects
 Rapture Rejects
 Rapture Rejects - Humble Exclusive "Safari Outfit" DLC
 Rebound Dodgeball Evolved
+Rebuild 3: Gangs of Deadsville
 Red Faction Guerrilla Re-Mars-tered
 Red Horizon
 Red Orchestra 2: Heroes of Stalingrad with Rising Storm
 Regions of Ruin
 Regular Human Basketball
+Regular Human Basketball
+Remnants of Naezith
 Resident Evil Revelations
 Retro Game Crunch
-Rise of the Tomb Raider™
+Rising Dusk
 Rising Storm 2: Vietnam + 2 DLCs
 Road Doom
 Road Redemption
@@ -334,6 +444,7 @@ Robot Roller-Derby Disco Dodgeball
 Rocket Birds: Hardboiled Chicken
 ROCKETSROCKETSROCKETS
 Rogue Rocks
+Rover Mechanic Simulator
 RUINER
 Rust (Early Access)
 Saints Row IV Game of the Century Edition
@@ -348,9 +459,12 @@ Shadowrun Chronicles - Boston Lockdown
 Shadowrun Returns
 Shadowrun Returns
 Shadowrun: Dragonfall Director's Cut
+Shadows: Awakening
 She Remembered Caterpillars
 Shenmue I & II
+SHENZHEN I/O
 Shiness: The Lightning Kingdom
+Shoppe Keep 2
 shutshimi
 Sid Meier's Civilization® VI
 Silence
@@ -360,7 +474,9 @@ Sleeping Dogs
 Slime-san
 Slipstream
 Small World 2
+Smile For Me
 Sniper Elite
+Sniper Elite 3
 Sniper Elite 3
 Sniper Elite V2
 Songs of Skydale
@@ -370,6 +486,7 @@ Sorcery! Part 3
 SOULCALIBUR VI
 Space Pilgrim Episode 1: Alpha Centauri
 Spectrum
+Speed Brawl
 SPLASH BLAST PANIC
 Splasher
 Splendor
@@ -379,20 +496,27 @@ Squad (Early Access)
 Squidlit
 Stacking
 Stardew Valley
+Starfinder: Pact Worlds Campaign Setting
+Stealth 2: A Game of Clones
 Steamworld Heist
 Steel Rats
 Stories: The Path of Destinies
 STRAFE: Millennium Edition
+Strange Brigade
 Streamline Early Access
+Street Fighter V
 Stronghold Legends: Steam Edition
+Stygian: Reign of the Old Ones
 Styx: Shards of Darkness
-Subnautica
 Sudden Strike 4
+Sunless Bundle (Sunless Skies + Sunless Sea)
 Super Chicken Catchers
 Super Galaxy Squadron EX
 Super Hexagon
+Super Hexagon
 Super Meat Boy
 Super Steampunk Pinball 2D
+SUPERHOT
 SuperLuminauts
 Sure Footing
 Surviving Mars
@@ -411,51 +535,89 @@ Talisman - The Highland Expansion
 Talisman: Digital Edition
 Tannenberg
 Team Fortress 2 badges - Mandrew's Munificent Mug and Israphel's Eleemosynary Expression
-Team Racing League
 Temple of Xiala
 Teslagrad
+The Adventure Pals
+The Bard's Tale IV: Director's Cut
+The Beast Inside
+The Coma 2: Vicious Sisters
 The Dwarves
 The Escapists 2
 The Flame in the Flood
 The Gallery - Episode 1: Call of the Starseed
 The Greater Good
 The Haunting of Billy
+The Hex
 The Incredible Adventures of Van Helsing
 The Inner World
 The Journey Down: Chapter Three
+The King's Bird
 The Long Dark
 The Long Journey Home
+The Messenger
+The Occupation
 The Park
 The Secret World
+The Shapeshifting Detective
 The Spiral Scouts
-The Surge
+The Stillness of the Wind
+The Suicide of Rachel Foster
 The Swapper
+The Swords of Ditto: Mormo's Curse
 THE TEAR
+The Uncertain: Last Quiet Day
 The Window Box
+The Witness
+Them's Fightin' Herds
 Thirty Flights of Loving
+This is the Police
+This Is the Police 2
 THOTH
 Throne of Lies The Online Game of Deceit
 Throne of Lies® The Online Game of Deceit
+Through the Darkest of Times
 Ticket to Ride - Complete Bundle
+Tilt Brush
 Tiltagon
 Titan Quest: Anniversary Edition + Titan Quest: Ragnarok DLC
-Tomb Raider
+Totally Accurate Battle Simulator
 Tower 57
 Tower of Guns
+Tower of Guns
 Tower Unite
+Townsmen - A Kingdom Rebuilt
 Toy Odyssey: The Lost and Found
+Trailmakers
+Train Valley 2
 TransOcean: The Shipping Company
 Trine 2: Complete Story
+Tropico 4
+Tropico 6 - El Prez Edition
 Tross
+Trüberbrook
+Tsioque
+Turok
+Turok 2: Seeds of Evil
 Twilight Struggle
+Two Point Hospital
 Two Point Hospital DLC
+Underhero
 Unit 4
+Unrailed!
+Vampire: The Masquerade – Coteries of New York
+Vampyr
 Verdun
+Verlet Swing
+Void Bastards
+Void Bastards
 VoidExpanse
 Volgarr the Viking
 VVVVVV
+VVVVVV
 War for the Overworld - Yogscast Worker Skin
+Wargroove
 Warhammer 40,000: Dawn of War III
+Warhammer 40,000: Gladius - Relics of War
 Warhammer: End Times - Vermintide Drachenfels DLC
 Warhammer: End Times - Vermintide Item: Razorfang Poison
 Warhammer: End Times – Vermintide
@@ -464,226 +626,33 @@ Warhammer: Vermintide 2 - Collector's Edition
 Warhammer: Vermintide Dwarf Helmet DLC
 WARMACHINE Tactics
 WARMACHINE Tactics - Mercenaries Faction Bundle
+Warsaw
+Warstone TD
 Wasted
 Wasted Pizza
+We Were Here Together
 We Were Here Too
 Westerado: Double Barreled
 Westerado: Double Barreled
+Whispers of a Machine
 Windward
 Witch It
 Wizard of Legend
+Wizard of Legend
 Wizorb
 World of Goo
-Yakuza 0
+Worms Revolution
+X-Morph: Defense
+XCOM® 2
 Yakuza Kiwami
+Yakuza Kiwami 2
 YORG.io
+Youropa
+Yuppie Psycho
 Zero G Arena
 Zero Reflex: Black Eye Edition
 Ziggurat
 Zombie Army Trilogy
 Zombie Night Terror
-Train Valley 2
-A Good Snowman is Hard to Build
-A Mortician's Tale
-Agents of Mayhem
-Alien Spidy
-Broken Age
-Brothers: A Tale of Two Sons
-Brutal Legend
-Darksiders II Deathinitive Edition
-Darksiders Warmastered Edition
-DUCATI - 90th Anniversary
-Europa Universalis IV
-Fahrenheit: Indigo Prophecy Remastered
-GNOG
-Hacknet
-HIVESWAP: Act 1
-Hollow Knight
-Into the Breach
-Jackbox Party Pack 2
-Killing Floor 2
-LEGO Batman 3: Beyond Gotham
-Lostwinds
-Magicka
-PAC-MAN™ CHAMPIONSHIP EDITION 2
-Party Hard
-Pikuniku
-Psychonauts
-Rebuild 3: Gangs of Deadsville
-Sniper Elite 3
-Speed Brawl
-Starfinder: Pact Worlds Campaign Setting
-Stealth 2: A Game of Clones
-Stick Fight: The Game
-Super Hexagon
-SUPERHOT
-This is the Police
-Tilt Brush
-Totally Accurate Battle Simulator
-Tropico 4
-VVVVVV
-The Witness
-Wizard of Legend
-Worms Revolution
 Zombotron
-The Adventure Pals
-Assault Android Cactus
-Duck Game
-Euro Truck Simulator 2
-Euro Truck Simulator 2: Australia Paint Pack DLC
-Feather
-Frog Detective
-Hacknet
-Hacknet Labyrinths DLC
-Hollow Knight
-Machinarium
-Mr. Shifty
-Paper Fire Rookie
-Paradigm
-Primal Carnage: Extinction
-Quest of Dungeons
-Regular Human Basketball
-Rising Dusk
-Tower of Guns
-Void Bastards
-Darksiders III
-Yakuza Kiwami 2
-Imperator: Rome
-Crying Suns
-Darksburg
-Little Misfortune
-Smile For Me
-Darkwood
-Tsioque
-Rover Mechanic Simulator
-Youropa
-Townsmen - A Kingdom Rebuilt
-Tropico 6 - El Prez Edition
-Fae Tactics
-Sunless Bundle (Sunless Skies + Sunless Sea)
-Iron Danger
-Autonauts
-Shadows: Awakening
-Fantasy Blacksmith
-The Suicide of Rachel Foster
-GOAT OF DUTY
-The Uncertain: Last Quiet Day
-Basement
-Lightmatter
-Golf with Your Friends + Caddypack DLC + OST
-Generation Zero
-Vampire: The Masquerade – Coteries of New York
-Fun with Ragdolls: The Game
-Lethal League Blaze
-Strange Brigade
-Evoland: Legendary Edition
-Catherine Classic
-The Occupation
-The Shapeshifting Detective
-Vampyr
-Hello Neighbor + Hello Neighbor: Hide and Seek
-Wargroove
-Call of Cthulhu
-Little Big Workshop
-Genesis Alpha One Deluxe Edition
-Automachef
-Through the Darkest of Times
-American Fugitive
-The Coma 2: Vicious Sisters
-We Were Here Together
-A Case of Distrust
-Age of Wonders: Planetfall Deluxe Edition
-Void Bastards
-Railway Empire
-Battlestar Galactica Deadlock
-Yuppie Psycho
-Beat Hazard 2
-Sigma Theory: Global Cold War
-Metal Unit
-Don't Escape: 4 Days to Survive
-Verlet Swing
-Basingstoke
-Earthlock
-GRID Ultimate Edition
-Hellblade: Senua's Sacrifice
-The Messenger
-Felix The Reaper
-Men of War: Assault Squad 2 - War Chest Edition
-Stygian: Reign of the Old Ones
-Remnants of Naezith
-Overload
-The Stillness of the Wind
-The King's Bird
-Jurassic World Evolution + 1 DLC
-XCOM® 2 + 2 DLC
-Rise of Industry
-Niche - a genetics survival game
-Warhammer 40,000: Gladius - Relics of War
-The Swords of Ditto: Mormo's Curse
-Warsaw
-Heave Ho
-MO:Astray
-Neoverse
-Chess Ultra
-Horace
-HITMAN 2
-GRIS
-This Is the Police 2
-Opus Magnum
-MOLEK-SYNTEZ
-Raiden V: Director's Cut
-Driftland: The Magic Revival
-Turok 2: Seeds of Evil
-Trüberbrook
-The Bard's Tale IV: Director's Cut
-Shoppe Keep 2
-Capitalism 2
-Planet Coaster + 1 DLC
-F1 2019 Anniversary Edition
-Fell Seal: Arbiter's Mark
-Battle Chasers: Nightwar
-EXAPUNKS
-Turok
-Death's Gambit
-198X
-Niffelheim
-AI War 2
-Etherborn
-Frostpunk + 1 DLC
-Pathfinder: Kingmaker Explorer Edition
-Book of Demons
-CryoFall
-Okami HD
-Eliza
-SHENZHEN I/O
-Project Warlock
-The Hex
-Warstone TD
-Underhero
-Night Call
-Middle-earth™: Shadow of War™
-Graveyard Keeper
-Two Point Hospital
-DiRT Rally 2.0 + 3 DLCs
-Street Fighter V
-Bad North: Jotunn Edition
-Trailmakers
-Unrailed!
-Whispers of a Machine
-Them's Fightin' Herds
-Mages of Mystralia
-GRIP + 1 DLC
-Blasphemous
-Ancestors Legacy
-Phantom Doctrine
-Dead In Vinland
-Horizon Chase Turbo
-Dark Future: Blood Red States
-X-Morph: Defense
-Desert Child
-Overcooked! 2
-Children of Morta
-The Beast Inside
-Shining resonance refrain
 Zwei: The Arges Adventure
-Zwei: The Ilvard Insurrection
