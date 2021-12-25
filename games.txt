@@ -293,10 +293,8 @@ Cook, Serve, Delicious! 2!!
 Styx: Shards of Darkness
 "Crazy Machines 3",Already owned,,
 Jalopy
-Kerbal Space Program
 Moon Hunters
 RUINER
-Deus Ex: Mankind Divided
 GOD EATER 2 Rage Burst
 "Lara Croft GO",Already owned,Yes,
 Mafia III
@@ -568,7 +566,6 @@ MO:Astray
 Neoverse
 Chess Ultra
 HITMAN 2
-GRIS
 This Is the Police 2
 Opus Magnum
 MOLEK-SYNTEZ
