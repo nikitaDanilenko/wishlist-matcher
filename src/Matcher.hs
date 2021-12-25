@@ -6,10 +6,8 @@ import Control.Monad.Trans.Class                  ( lift )
 import Control.Monad.Trans.Maybe                  ( MaybeT ( .. ), runMaybeT )
 import Data.Aeson                                 ( FromJSON ( parseJSON ), Value ( Object ),
                                                     (.:), decode, Object )
-import Data.Aeson.Types                           ( Parser )
 import Data.HashMap.Strict                        ( elems )
 import Data.Map                                   ( Map, fromList, (!), size, delete )
-import qualified Data.Text as Text                ( pack )
 import Network.HTTP.Conduit                       ( simpleHttp, HttpException )
 import qualified Data.ByteString.Lazy.Char8 as BS
 import Data.List                                  ( intersect, isSuffixOf )
@@ -19,11 +17,10 @@ import Graph.MaximumMatching                      ( maximumMatching )
 import Auxiliary.General                          ( Mat )
 import Algebraic.Matrix                           ( fromMat, symmetricClosure, toMat )
 import System.Directory                           ( getDirectoryContents )
+import System.Environment                         ( getArgs, withArgs )
 import qualified Data.Map as M                    ( lookup, elems )
-
-data Friend = Profile Integer
-            | Id String
-            deriving (Eq, Ord, Show, Read)
+import FriendList                                 ( mkLink, SteamID (..), Friend (..), FriendList (..) )
+import Util                                       ( (.@) )
 
 data Game = Game String
     deriving (Show, Eq, Ord)
@@ -40,19 +37,15 @@ data Wishlist = Wishlist [Game]
 instance FromJSON Wishlist where
     parseJSON (Object m) = Wishlist <$> (mapM parseJSON (elems m))
 
-fetchWishlist :: Friend -> MaybeT IO [Game]
-fetchWishlist = undefined
+fetchAndWrite :: SteamID -> IO ()
+fetchAndWrite sid =
+  simpleHttp (mkLink sid) >>= writeFile (show (steamID sid) ++ ".json") . BS.unpack
 
--- The created string can be theoretically used for querying the wishlists.
--- However, this requires a reverse proxy, since Steam is very restrictive in its CORS policy.
-mkWishlistQuery :: Friend -> String
-mkWishlistQuery f = prefix ++ friendQuery ++ suffix where
-    prefix = "http://store.steampowered.com/wishlist/"
-    suffix = "/wishlistdata/"
-
-    friendQuery = case f of
-        Profile i -> "profiles/" ++ show i
-        Id name   -> "id/" ++ name
+fetchWishlists :: SteamID -> String -> IO ()
+fetchWishlists sid apiKey =
+  do friendsJson <- simpleHttp ("http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=" ++ apiKey ++ "&steamid=" ++ show (steamID sid) ++ "&relationship=friend")
+     let friends = fromMaybe (FriendList []) (decode friendsJson :: Maybe FriendList)
+     mapM_ fetchAndWrite (ids friends)
 
 readWishlistWith :: [Game] -> BS.ByteString -> [Game]
 readWishlistWith gs ws = maybe [] (intersect gs . (\(Wishlist l) -> l)) (decode ws :: Maybe Wishlist)
@@ -82,10 +75,6 @@ findMatching (WG nfs ngs graph) = result where
     subAssociations = filter (\(i, _) -> i < numberOfFriends) associations
     result = map (\(i, j) -> (nfs ! i, ngs ! j)) subAssociations
 
--- Shorthand for accessing fields in a JSON object.
-(.@) :: FromJSON a => Object -> String -> Parser a
-m .@ str = m .: Text.pack str
-
 wishlistsFolder :: String
 wishlistsFolder = "wishlists"
 
@@ -109,6 +98,10 @@ deleteAll ks m = foldr delete m ks
 
 main :: IO ()
 main = do
+-- Todo: Technically, the lines in the comments can fetch the wishlists. However, a Steam API restriction blocks requests
+-- so we need a reverse proxy or a command line argument.
+--    ownId : key : _ <- getArgs
+--    fetchWishlists (SteamID (read ownId)) key
     fs <- getDirectoryContents wishlistsFolder
     fbs <- mapM processFile (filter (isSuffixOf ".json") fs)
     gs <- fmap (map Game . lines) (readFile "games.txt")
