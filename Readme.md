@@ -10,6 +10,10 @@ This may change in the future, if the Steam API changes. In its current form, th
 # Usage
 
 1. Put the wishlists in separate files in the folder `wishlists`, where each file is called `<SteamID>.json`.
+   1. To fetch the files, you may use the command 
+      ```
+      curl https://store.steampowered.com/wishlist/profiles/<steamID>/wishlistdata/ -o wishlists/<steamID>.json
+      ```
 2. Put your spare games one per line in a file called `games.txt` in the main folder.
 3. Call `main` in the file `Matcher.hs` (or compile and call the executable).
 
