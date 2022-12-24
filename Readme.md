@@ -14,6 +14,8 @@ This may change in the future, if the Steam API changes. In its current form, th
       ```
       curl https://store.steampowered.com/wishlist/profiles/<steamID>/wishlistdata/ -o wishlists/<steamID>.json
       ```
+      Caveat: In many cases you need to be logged in to see the wishlists.
+      It may be most convenient to open the links in a browser, and save the data from there.
 2. Put your spare games one per line in a file called `games.txt` in the main folder.
 3. Call `main` in the file `Matcher.hs` (or compile and call the executable).
 
