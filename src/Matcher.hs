@@ -6,7 +6,6 @@ import Control.Monad.Trans.Class                  ( lift )
 import Control.Monad.Trans.Maybe                  ( MaybeT ( .. ), runMaybeT )
 import Data.Aeson                                 ( FromJSON ( parseJSON ), Value ( Object ),
                                                     (.:), decode, Object )
-import Data.HashMap.Strict                        ( elems )
 import Data.Map                                   ( Map, fromList, (!), size, delete )
 import Network.HTTP.Conduit                       ( simpleHttp, HttpException )
 import qualified Data.ByteString.Lazy.Char8 as BS
@@ -19,6 +18,7 @@ import Algebraic.Matrix                           ( fromMat, symmetricClosure, t
 import System.Directory                           ( getDirectoryContents )
 import System.Environment                         ( getArgs, withArgs )
 import qualified Data.Map as M                    ( lookup, elems )
+import qualified Data.Aeson.KeyMap as KM          ( elems )
 import FriendList                                 ( mkLink, SteamID (..), Friend (..), FriendList (..) )
 import Util                                       ( (.@) )
 
@@ -35,7 +35,7 @@ data Wishlist = Wishlist [Game]
     deriving Show
 
 instance FromJSON Wishlist where
-    parseJSON (Object m) = Wishlist <$> (mapM parseJSON (elems m))
+    parseJSON (Object m) = Wishlist <$> (mapM parseJSON (KM.elems m))
 
 fetchAndWrite :: SteamID -> IO ()
 fetchAndWrite sid =

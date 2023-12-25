@@ -18,7 +18,7 @@
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
 resolver:
-  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/27.yaml
+  lts-21.7
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -42,7 +42,7 @@ packages:
 #
 extra-deps:
   - git: https://github.com/nikitaDanilenko/gwaf.git
-    commit: a3d5f2aeb8588d56365c73f05eedc4b3b3862e70
+    commit: 419b76fffb517f697a480a4d33f7c3dfc88f95ee
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
