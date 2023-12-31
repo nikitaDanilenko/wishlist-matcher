@@ -14,7 +14,7 @@ data FriendInfo = FriendInfo {
     steamid        :: String,
     personaname    :: String,
     loccountrycode :: String
-}
+} deriving Show
 
 deriveJSON defaultOptions ''FriendInfo
 
