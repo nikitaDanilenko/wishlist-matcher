@@ -1,45 +1,40 @@
-module FriendList where
+{-# LANGUAGE TemplateHaskell #-}
 
-import Control.Monad                              ( MonadPlus ( mzero ) )
-import Data.Aeson                                 ( FromJSON ( parseJSON ), Value ( Object ), decode, Object )
-import Data.HashMap.Strict                        ( HashMap, elems )
-import qualified Data.ByteString.Lazy.Char8 as BS
-import Util                                       ( (.@) )
+module FriendList ( fetchFriendList, FriendList(..) ) where
 
-data Friend = Profile Integer
-            | Id String
-            deriving (Eq, Ord, Show, Read)
+import           Data.Aeson           (decode)
+import           Data.Aeson.TH        (defaultOptions, deriveJSON)
+import           Data.Maybe           (catMaybes, fromMaybe)
+import           FriendInfo           (FriendInfo (..), fetchFriendInfo)
+import           Network.HTTP.Conduit (simpleHttp)
+import qualified Util                 as U
+import           Util                 (ApiKey (..), SteamID (..), (.@))
 
-data FriendList = FriendList { ids :: [SteamID] }
+newtype FriendList = FriendList { friendInfos :: [FriendInfo] }
     deriving Show
 
-data SteamID = SteamID { steamID :: Integer }
-    deriving Show
+newtype FriendIds = FriendIds { ids :: [SteamID] }
 
-data PreList = PreList [Value]
+newtype FriendsResponse = FriendsResponse { friends :: [SteamID] }
 
-instance FromJSON SteamID where
-    parseJSON (Object m) = (SteamID . read) <$> (m .@ "steamid")
+deriveJSON defaultOptions ''FriendsResponse
 
-instance FromJSON FriendList where
-    parseJSON (Object m) = FriendList <$> (do
-        PreList pl <- PreList <$> ((m .@ "friendslist") >>= (.@ "friends"))
-        mapM parseJSON pl)
-    parseJSON _          = mzero
+fetchFriendList :: ApiKey -> SteamID -> IO FriendList
+fetchFriendList apiKey accountId = do
+    let friendListPath = concat ["http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=", key apiKey, "&steamid=", U.steamid accountId, "&relationship=friend"]
+    friendsJson <- simpleHttp friendListPath
+    let friendIds = fromMaybe [] (decode friendsJson :: Maybe [SteamID])
+    friendInfos <- mapM (fetchFriendInfo apiKey) friendIds
+    return (FriendList (catMaybes friendInfos))
 
-mkLinks :: FriendList -> [String]
-mkLinks = map mkLink . ids
+-- The response returned by the 'ISteamUser/GetFriendList' endpoint.
+newtype GetFriendsListResponse = GetFriendsListResponse { friendslist :: FriendsResponse }
 
-mkLink :: SteamID -> String
-mkLink = mkWishlistQuery . Profile . steamID
+deriveJSON defaultOptions ''GetFriendsListResponse
 
--- The created string can be theoretically used for querying the wishlists.
--- However, this requires a reverse proxy, since Steam is very restrictive in its CORS policy.
-mkWishlistQuery :: Friend -> String
-mkWishlistQuery f = prefix ++ friendQuery ++ suffix where
-    prefix = "http://store.steampowered.com/wishlist/"
-    suffix = "/wishlistdata/"
-
-    friendQuery = case f of
-        Profile i -> "profiles/" ++ show i
-        Id name   -> "id/" ++ name
+-- The resulting can be used for querying the wishlists, but requires a login cookie in case on non-public profiles.
+mkWishlistQuery :: SteamID -> String
+mkWishlistQuery steamId = concat [prefix, friendQuery, suffix] where
+    prefix      = "https://store.steampowered.com/wishlist/"
+    suffix      = "/wishlistdata/"
+    friendQuery = "profiles/" ++ U.steamid steamId
