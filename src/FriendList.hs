@@ -8,7 +8,7 @@ import           Data.Maybe           (catMaybes, fromMaybe)
 import           FriendInfo           (FriendInfo (..), fetchFriendInfo)
 import           Network.HTTP.Conduit (simpleHttp)
 import qualified Util                 as U
-import           Util                 (ApiKey (..), SteamID (..), (.@))
+import           Util                 (ApiKey (..), SteamID (..))
 
 newtype FriendList = FriendList { friendInfos :: [FriendInfo] }
     deriving Show
@@ -31,10 +31,3 @@ fetchFriendList apiKey accountId = do
 newtype GetFriendsListResponse = GetFriendsListResponse { friendslist :: FriendsResponse }
 
 deriveJSON defaultOptions ''GetFriendsListResponse
-
--- The resulting can be used for querying the wishlists, but requires a login cookie in case on non-public profiles.
-mkWishlistQuery :: SteamID -> String
-mkWishlistQuery steamId = concat [prefix, friendQuery, suffix] where
-    prefix      = "https://store.steampowered.com/wishlist/"
-    suffix      = "/wishlistdata/"
-    friendQuery = "profiles/" ++ U.steamid steamId
