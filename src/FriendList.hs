@@ -40,4 +40,4 @@ fetchFriendInfoWithOutput :: ApiKey -> Int -> Int -> SteamID -> IO (Maybe Friend
 fetchFriendInfoWithOutput apiKey total index  steamId = do
   friendInfo <- fetchFriendInfo apiKey steamId
   putStrLn (unwords ["Fetched friend info", show index, "of", show total])
-  return friendInfo 
+  return friendInfo
