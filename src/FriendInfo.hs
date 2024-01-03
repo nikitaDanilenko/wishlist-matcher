@@ -13,7 +13,7 @@ import           Util                 (ApiKey (..), SteamID (..))
 data FriendInfo = FriendInfo {
     steamid        :: String,
     personaname    :: String,
-    loccountrycode :: String
+    loccountrycode :: Maybe String
 } deriving Show
 
 deriveJSON defaultOptions ''FriendInfo
