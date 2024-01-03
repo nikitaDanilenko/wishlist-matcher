@@ -27,8 +27,17 @@ deriveJSON defaultOptions ''GetFriendsListResponse
 fetchFriendList :: ApiKey -> SteamID -> IO FriendList
 fetchFriendList apiKey accountId = do
     let friendListPath = concat ["http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=", key apiKey, "&steamid=", U.steamid accountId, "&relationship=friend"]
+    putStrLn "Fetching friend list"
     friendsJson <- simpleHttp friendListPath
     let response = decode friendsJson :: Maybe GetFriendsListResponse
         friendIds = maybe [] (friends . friendslist) response
-    friendInfos <- mapM (fetchFriendInfo apiKey) friendIds
+        numberOfFriends = length friendIds
+    putStrLn (unwords ["Found" , show numberOfFriends,  "friends"])
+    friendInfos <- mapM (uncurry (fetchFriendInfoWithOutput apiKey numberOfFriends)) (zip [1 .. ] friendIds)
     return (FriendList (catMaybes friendInfos))
+
+fetchFriendInfoWithOutput :: ApiKey -> Int -> Int -> SteamID -> IO (Maybe FriendInfo)
+fetchFriendInfoWithOutput apiKey total index  steamId = do
+  friendInfo <- fetchFriendInfo apiKey steamId
+  putStrLn (unwords ["Fetched friend info", show index, "of", show total])
+  return friendInfo 
