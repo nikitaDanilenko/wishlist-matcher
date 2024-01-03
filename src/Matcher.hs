@@ -3,42 +3,39 @@
 
 module Matcher where
 
-import           Algebraic.Matrix           (fromMat, symmetricClosure, toMat)
-import           Auxiliary.General          (Mat)
-import           Control.Arrow              (second)
-import           Control.Monad              (MonadPlus (mzero))
-import           Control.Monad.Trans.Class  (lift)
-import           Control.Monad.Trans.Maybe  (MaybeT (..), runMaybeT)
-import           Data.Aeson                 (FromJSON (parseJSON), Object,
-                                             Value (Object), decode, (.:))
-import qualified Data.Aeson.KeyMap          as KM (elems)
-import           Data.Aeson.TH              (defaultOptions, deriveJSON)
-import qualified Data.ByteString            as SBS
-import qualified Data.ByteString.Lazy       as LBS
-import qualified Data.ByteString.Lazy.Char8 as BS
-import           Data.List                  (intersect, isSuffixOf)
-import           Data.Map                   (Map, delete, fromList, size, (!))
-import qualified Data.Map                   as M (elems, lookup)
-import           Data.Maybe                 (catMaybes, fromMaybe, maybe)
-import           Data.String                (fromString)
-import           Data.Time.Clock            (UTCTime (..), addUTCTime,
-                                             getCurrentTime)
-import           FriendInfo                 (FriendInfo (..), fetchFriendInfo)
-import qualified FriendInfo                 as FI
-import           FriendList                 (FriendList (..))
-import qualified FriendList                 as FL
-import           Graph.Graph                (GraphLL)
-import           Graph.MaximumMatching      (maximumMatching)
-import           Network.HTTP.Conduit       (Cookie (..), HttpException,
-                                             Request (..), Response,
-                                             createCookieJar, httpLbs,
-                                             newManager, parseRequest,
-                                             responseBody, simpleHttp,
-                                             tlsManagerSettings)
-import           System.Directory           (getDirectoryContents)
-import           System.Environment         (getArgs, withArgs)
-import qualified Util                       as U
-import           Util                       (ApiKey (..), SteamID (..), (.@))
+import           Algebraic.Matrix          (fromMat, symmetricClosure, toMat)
+import           Auxiliary.General         (Mat)
+import           Control.Arrow             (second)
+import           Control.Monad             (MonadPlus (mzero))
+import           Control.Monad.Trans.Class (lift)
+import           Control.Monad.Trans.Maybe (MaybeT (..), runMaybeT)
+import           Data.Aeson                (FromJSON (parseJSON),
+                                            Value (Array, Object), decode)
+import qualified Data.Aeson.KeyMap         as KM (elems)
+import           Data.Aeson.TH             (defaultOptions, deriveJSON)
+import qualified Data.ByteString.Lazy      as LBS
+import           Data.List                 (intersect, isSuffixOf)
+import           Data.Map                  (Map, delete, fromList, size, (!))
+import qualified Data.Map                  as M (elems, lookup)
+import           Data.Maybe                (catMaybes, fromMaybe, maybe)
+import           Data.String               (fromString)
+import           Data.Time.Clock           (UTCTime (..), addUTCTime,
+                                            getCurrentTime)
+import           FriendInfo                (FriendInfo (..), fetchFriendInfo)
+import qualified FriendInfo                as FI
+import           FriendList                (FriendList (..))
+import qualified FriendList                as FL
+import           Graph.Graph               (GraphLL)
+import           Graph.MaximumMatching     (maximumMatching)
+import           Network.HTTP.Conduit      (Cookie (..), HttpException,
+                                            Request (..), Response,
+                                            createCookieJar, httpLbs,
+                                            newManager, parseRequest,
+                                            responseBody, simpleHttp,
+                                            tlsManagerSettings)
+import           System.Environment        (getArgs, withArgs)
+import qualified Util                      as U
+import           Util                      (ApiKey (..), SteamID (..))
 
 newtype Game = Game { name :: String }
     deriving (Show, Eq, Ord)
@@ -52,8 +49,9 @@ newtype Wishlist = Wishlist { wishlistGames :: [Game] }
 
 -- Not auto-derived, because Steam provides wishlists as a map, while we only want the map values.
 instance FromJSON Wishlist where
-    parseJSON (Object m) = Wishlist <$> mapM parseJSON (KM.elems m)
-    parseJSON _          = mzero
+    parseJSON (Object m)                   = Wishlist <$> mapM parseJSON (KM.elems m)
+    parseJSON (Array vector) | null vector = return (Wishlist [])
+    parseJSON _                            = mzero
 
 httpGetWithCookie :: String -> String -> IO (Response LBS.ByteString)
 httpGetWithCookie cookieContent url = do
@@ -90,9 +88,19 @@ fetchWishlist cookieContent accountId = do
     response <- httpGetWithCookie cookieContent (mkWishlistQuery accountId)
     return (decode (responseBody response))
 
+fetchWishlistWithOutput :: String -> Int -> Int -> FriendInfo -> IO (Maybe Wishlist)
+fetchWishlistWithOutput cookieContent total index friendInfo = do
+   result <- fetchWishlist cookieContent (SteamID (FI.steamid friendInfo))
+   let success = U.isSuccess result
+   putStrLn (unwords [success, "Queried wishlist for", FI.personaname friendInfo, concat ["(", show index, "/", show total, ")"]])
+   return result
+
 fetchWishlists :: String -> [FriendInfo] -> IO [(FriendInfo, Wishlist)]
-fetchWishlists cookieContent friendInfos = do
-    wishlists <- mapM (fetchWishlist cookieContent . SteamID . FI.steamid) friendInfos
+fetchWishlists cookieContent friendInfos =
+  let total = length friendInfos
+  in
+  do
+    wishlists <- mapM (uncurry(fetchWishlistWithOutput cookieContent total)) (zip [1..] friendInfos)
     return (catMaybes (map (\(friendInfo, maybeWishlist) -> fmap (friendInfo,) maybeWishlist ) (zip friendInfos wishlists)))
 
 matchingGamesByWishlist :: [Game] -> Wishlist -> [Game]
