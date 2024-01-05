@@ -134,6 +134,9 @@ findMatching (WG nfs ngs graph) = result where
 deleteAll :: Ord k => [k] -> Map k a -> Map k a
 deleteAll ks m = foldr delete m ks
 
+gamesFile :: String
+gamesFile = "games.txt"
+
 step1 :: IO ()
 step1 = do
   ownId : key : cookieContent : _ <- getArgs
@@ -142,7 +145,7 @@ step1 = do
   friendList <- FL.fetchFriendList apiKey ownAccountId
   let friendInfos = FL.friendInfos friendList
   wishlists <- fetchWishlists cookieContent friendInfos
-  games <- fmap (map Game . lines) (readFile "games.txt")
+  games <- fmap (map Game . lines) (readFile gamesFile)
   let wishlistGraph = buildWishlistGraph games wishlists
       matching = findMatching wishlistGraph
   print matching
