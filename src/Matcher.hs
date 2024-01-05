@@ -14,7 +14,7 @@ import           Data.Aeson                (FromJSON (parseJSON),
 import qualified Data.Aeson.KeyMap         as KM (elems)
 import           Data.Aeson.TH             (defaultOptions, deriveJSON)
 import qualified Data.ByteString.Lazy      as LBS
-import           Data.List                 (intersect, isSuffixOf)
+import           Data.List                 (intersect, isSuffixOf, isPrefixOf)
 import           Data.Map                  (Map, delete, fromList, size, (!))
 import qualified Data.Map                  as M (elems, lookup)
 import           Data.Maybe                (catMaybes, fromMaybe, maybe)
@@ -137,12 +137,22 @@ deleteAll ks m = foldr delete m ks
 gamesFile :: String
 gamesFile = "games.txt"
 
+excludedFile :: String
+excludedFile = "excluded.txt"
+
+readExcluded :: IO [SteamID]
+readExcluded = do
+  text <-  (readFile excludedFile)
+  let excluded = (map SteamID . filter (not . isPrefixOf ['#']) . lines) text
+  return excluded
+
 step1 :: IO ()
 step1 = do
   ownId : key : cookieContent : _ <- getArgs
   let ownAccountId = SteamID ownId
       apiKey = ApiKey key
-  friendList <- FL.fetchFriendList apiKey ownAccountId
+  excluded <- readExcluded
+  friendList <- FL.fetchFriendList apiKey ownAccountId excluded
   let friendInfos = FL.friendInfos friendList
   wishlists <- fetchWishlists cookieContent friendInfos
   games <- fmap (map Game . lines) (readFile gamesFile)
