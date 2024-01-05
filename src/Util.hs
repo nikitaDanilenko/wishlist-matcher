@@ -12,7 +12,7 @@ newtype ApiKey = ApiKey { key :: String }
 
 -- The naming is consistent with the API
 newtype SteamID = SteamID { steamid :: String }
-    deriving Show
+    deriving (Show, Eq)
 
 deriveJSON defaultOptions ''SteamID
 
