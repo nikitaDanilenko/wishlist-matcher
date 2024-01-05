@@ -4,6 +4,7 @@ module FriendList ( fetchFriendList, FriendList(..) ) where
 
 import           Data.Aeson           (decode)
 import           Data.Aeson.TH        (defaultOptions, deriveJSON)
+import Data.List ((\\))
 import           Data.Maybe           (catMaybes, fromMaybe)
 import           FriendInfo           (FriendInfo (..), fetchFriendInfo)
 import           Network.HTTP.Conduit (simpleHttp)
@@ -24,15 +25,15 @@ newtype GetFriendsListResponse = GetFriendsListResponse { friendslist :: Friends
 
 deriveJSON defaultOptions ''GetFriendsListResponse
 
-fetchFriendList :: ApiKey -> SteamID -> IO FriendList
-fetchFriendList apiKey accountId = do
+fetchFriendList :: ApiKey -> SteamID -> [SteamID] -> IO FriendList
+fetchFriendList apiKey accountId excluded = do
     let friendListPath = concat ["http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=", key apiKey, "&steamid=", U.steamid accountId, "&relationship=friend"]
     putStrLn "Fetching friend list"
     friendsJson <- simpleHttp friendListPath
     let response = decode friendsJson :: Maybe GetFriendsListResponse
-        friendIds = maybe [] (friends . friendslist) response
+        friendIds = maybe [] (friends . friendslist) response \\ excluded
         numberOfFriends = length friendIds
-    putStrLn (unwords ["Found" , show numberOfFriends,  "friends"])
+    putStrLn (unwords ["Found" , show numberOfFriends,  "non-excluded friends"])
     friendInfos <- mapM (uncurry (fetchFriendInfoWithOutput apiKey numberOfFriends)) (zip [1 .. ] friendIds)
     return (FriendList (catMaybes friendInfos))
 
