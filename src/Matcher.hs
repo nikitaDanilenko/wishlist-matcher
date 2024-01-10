@@ -4,6 +4,7 @@
 module Matcher where
 
 import           Algebraic.Matrix          (fromMat, symmetricClosure, toMat)
+import           Assignment                (createMessage, initial, obfuscate)
 import           Auxiliary.General         (Mat)
 import           Control.Arrow             (second)
 import           Control.Monad             (MonadPlus (mzero))
@@ -14,7 +15,8 @@ import           Data.Aeson                (FromJSON (parseJSON),
 import qualified Data.Aeson.KeyMap         as KM (elems)
 import           Data.Aeson.TH             (defaultOptions, deriveJSON)
 import qualified Data.ByteString.Lazy      as LBS
-import           Data.List                 (intersect, isSuffixOf, isPrefixOf)
+import           Data.Char                 (toLower)
+import           Data.List                 (intersect, isPrefixOf, isSuffixOf, intercalate, (\\))
 import           Data.Map                  (Map, delete, fromList, size, (!))
 import qualified Data.Map                  as M (elems, lookup)
 import           Data.Maybe                (catMaybes, fromMaybe, maybe)
@@ -112,8 +114,8 @@ data WishlistGraph = WG {
     associations    :: GraphLL ()
 } deriving Show
 
-buildWishlistGraph :: [Game] -> [(FriendInfo, Wishlist)] -> WishlistGraph
-buildWishlistGraph gs fws =
+buildWishlistGraph :: [(FriendInfo, Wishlist)] -> [Game] -> WishlistGraph
+buildWishlistGraph fws gs =
     WG (fromList (map (second fst) indexedFriends)) (fromList indexedGames) (symmetricClosure (fromMat edges)) where
         indexedFriends = zip [0 ..] fws
         numberOfFriends = length fws
@@ -140,14 +142,33 @@ gamesFile = "games.txt"
 excludedFile :: String
 excludedFile = "excluded.txt"
 
+assignmentsFile :: String
+assignmentsFile = "assignments.txt"
+
+messagesFile :: String
+messagesFile = "messages.txt"
+
 readExcluded :: IO [SteamID]
 readExcluded = do
   text <-  (readFile excludedFile)
   let excluded = (map SteamID . filter (not . isPrefixOf ['#']) . lines) text
   return excluded
 
-step1 :: IO ()
-step1 = do
+branchYesNo :: String -> IO a -> IO a -> IO a
+branchYesNo prefix yes no = do
+  answer <- getLine
+  if isPrefixOf prefix (map toLower answer) then
+    yes
+  else
+    no
+
+
+
+waitForDone :: IO ()
+waitForDone = branchYesNo "done" (return ()) waitForDone
+
+startWorkflow :: IO ()
+startWorkflow = do
   ownId : key : cookieContent : _ <- getArgs
   let ownAccountId = SteamID ownId
       apiKey = ApiKey key
@@ -155,21 +176,44 @@ step1 = do
   friendList <- FL.fetchFriendList apiKey ownAccountId excluded
   let friendInfos = FL.friendInfos friendList
   wishlists <- fetchWishlists cookieContent friendInfos
-  games <- fmap (map Game . lines) (readFile gamesFile)
-  let wishlistGraph = buildWishlistGraph games wishlists
-      matching = findMatching wishlistGraph
-  print matching
+  attemptToFindAssignmentWorkflow wishlists
 
+attemptToFindAssignmentWorkflow :: [(FriendInfo, Wishlist)] -> IO ()
+attemptToFindAssignmentWorkflow wishlists = do
+  matching <- matchingWorkflow wishlists
+  putStrLn "Here is one suggestion:"
+  printMatching matching
+  putStrLn "unmatched: "
+  mapM_ putStrLn (map (FI.personaname . fst) wishlists \\ map (FI.personaname . fst) matching)
+  putStrLn "Are you satisfied with this suggestion? If yes, type 'y', otherwise adjust the games file, and type 'n'."
+  branchYesNo "y" (assignmentWorkflow matching) (attemptToFindAssignmentWorkflow wishlists)
 
---main :: IO ()
---main = do
-----    ownId : key : _ <- getArgs
---    fs <- getDirectoryContents wishlistsFolder
---    fbs <- mapM processFile (filter (isSuffixOf ".json") fs)
---    gs <- fmap (map Game . lines) (readFile "games.txt")
---    let wlg = readWishlistsWith gs fbs
---        matching = findMatching wlg
---    nameMap <- mkAssociations
---    mapM_ (putStrLn . (\(i, (f, Game g)) -> concat [show i, ": ", show f, " (", fromMaybe "???" (M.lookup f nameMap), ")", " - ", g])) (zip [1..] matching)
---    putStrLn "unmatched: "
---    mapM_ putStrLn (M.elems (deleteAll (map fst matching) nameMap))
+matchingWorkflow :: [(FriendInfo, Wishlist)] -> IO [(FriendInfo, Game)]
+matchingWorkflow wishlists =
+  fmap (findMatching . buildWishlistGraph wishlists . map Game . lines) (readFile gamesFile)
+
+assignmentWorkflow :: [(FriendInfo, Game)] -> IO ()
+assignmentWorkflow matching =
+  do
+    putStrLn "Writing assignments to file."
+    let assignments = map (\(friendInfo, Game game) -> initial (FI.personaname friendInfo) (FI.loccountrycode friendInfo) game) matching
+    writeFile assignmentsFile (unlines (map show assignments))
+    putStrLn "Written assignments to file. Please fill in the links, and then type 'done'."
+    branchYesNo "done" (createMessagesWorkflow) (assignmentWorkflow matching)
+
+createMessagesWorkflow :: IO ()
+createMessagesWorkflow = do
+  putStrLn "Reading assignments from file."
+  assignments <- fmap (map read . lines) (readFile assignmentsFile)
+  let assignmentTexts = map createMessage assignments
+      outputText = intercalate "\n----------------------------------\n\n" assignmentTexts
+  writeFile messagesFile outputText
+  putStrLn "Written messages to file. The file will be overwritten if you run this program again."
+  let obfuscatedTexts = map (show . obfuscate) assignments
+      obfuscatedOutputText = unlines obfuscatedTexts
+  writeFile "GiftsThisYear.txt" obfuscatedOutputText
+  putStrLn "Written obfuscated messages to file. Save it for future reference. See you next year!"
+
+printMatching :: [(FriendInfo, Game)] -> IO ()
+printMatching matching = do
+  mapM_ (putStrLn . (\(i, (friendInfo, Game g)) -> concat [show i, ": ", FI.personaname friendInfo, " -> ", g])) (zip [1..] matching)
