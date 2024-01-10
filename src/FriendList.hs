@@ -4,7 +4,7 @@ module FriendList ( fetchFriendList, FriendList(..) ) where
 
 import           Data.Aeson           (decode)
 import           Data.Aeson.TH        (defaultOptions, deriveJSON)
-import Data.List ((\\))
+import           Data.List            ((\\))
 import           Data.Maybe           (catMaybes, fromMaybe)
 import           FriendInfo           (FriendInfo (..), fetchFriendInfo)
 import           Network.HTTP.Conduit (simpleHttp)
