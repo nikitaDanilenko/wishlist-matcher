@@ -16,7 +16,8 @@ import qualified Data.Aeson.KeyMap         as KM (elems)
 import           Data.Aeson.TH             (defaultOptions, deriveJSON)
 import qualified Data.ByteString.Lazy      as LBS
 import           Data.Char                 (toLower)
-import           Data.List                 (intersect, isPrefixOf, isSuffixOf, intercalate, (\\))
+import           Data.List                 (intercalate, intersect, isPrefixOf,
+                                            isSuffixOf, (\\))
 import           Data.Map                  (Map, delete, fromList, size, (!))
 import qualified Data.Map                  as M (elems, lookup)
 import           Data.Maybe                (catMaybes, fromMaybe, maybe)
