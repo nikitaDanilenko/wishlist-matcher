@@ -1,72 +1,130 @@
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TupleSections   #-}
+
 module Matcher where
 
-import Control.Arrow                              ( second )
-import Control.Monad                              ( MonadPlus ( mzero ) )
-import Control.Monad.Trans.Class                  ( lift )
-import Control.Monad.Trans.Maybe                  ( MaybeT ( .. ), runMaybeT )
-import Data.Aeson                                 ( FromJSON ( parseJSON ), Value ( Object ),
-                                                    (.:), decode, Object )
-import Data.Map                                   ( Map, fromList, (!), size, delete )
-import Network.HTTP.Conduit                       ( simpleHttp, HttpException )
-import qualified Data.ByteString.Lazy.Char8 as BS
-import Data.List                                  ( intersect, isSuffixOf )
-import Data.Maybe                                 ( maybe, fromMaybe )
-import Graph.Graph                                ( GraphLL )
-import Graph.MaximumMatching                      ( maximumMatching )
-import Auxiliary.General                          ( Mat )
-import Algebraic.Matrix                           ( fromMat, symmetricClosure, toMat )
-import System.Directory                           ( getDirectoryContents )
-import System.Environment                         ( getArgs, withArgs )
-import qualified Data.Map as M                    ( lookup, elems )
-import qualified Data.Aeson.KeyMap as KM          ( elems )
-import FriendList                                 ( mkLink, SteamID (..), Friend (..), FriendList (..) )
-import Util                                       ( (.@) )
+import           Algebraic.Matrix          (fromMat, symmetricClosure, toMat)
+import           Assignment                (createMessage, initial, obfuscate)
+import           Auxiliary.General         (Mat)
+import           Control.Arrow             (second)
+import           Control.Monad             (MonadPlus (mzero))
+import           Control.Monad.Trans.Class (lift)
+import           Control.Monad.Trans.Maybe (MaybeT (..), runMaybeT)
+import           Data.Aeson                (FromJSON (parseJSON),
+                                            Value (Array, Object), decode)
+import qualified Data.Aeson.KeyMap         as KM (elems)
+import           Data.Aeson.TH             (defaultOptions, deriveJSON)
+import qualified Data.ByteString.Lazy      as LBS
+import           Data.Char                 (toLower)
+import           Data.List                 (intercalate, intersect, isPrefixOf,
+                                            isSuffixOf, (\\))
+import           Data.Map                  (Map, delete, fromList, size, (!))
+import qualified Data.Map                  as M (elems, lookup)
+import           Data.Maybe                (catMaybes, fromMaybe, maybe)
+import           Data.String               (fromString)
+import           Data.Time.Clock           (UTCTime (..), addUTCTime,
+                                            getCurrentTime)
+import           FriendInfo                (FriendInfo (..), fetchFriendInfo)
+import qualified FriendInfo                as FI
+import           FriendList                (FriendList (..))
+import qualified FriendList                as FL
+import           Graph.Graph               (GraphLL)
+import           Graph.MaximumMatching     (maximumMatching)
+import           Network.HTTP.Conduit      (Cookie (..), HttpException,
+                                            Request (..), Response,
+                                            createCookieJar, httpLbs,
+                                            newManager, parseRequest,
+                                            responseBody, simpleHttp,
+                                            tlsManagerSettings)
+import           System.Environment        (getArgs, withArgs)
+import qualified Util                      as U
+import           Util                      (ApiKey (..), SteamID (..))
 
-data Game = Game String
+newtype Game = Game { name :: String }
     deriving (Show, Eq, Ord)
 
-data GameWish = GameWish { friend :: Friend, game :: Game }
+deriveJSON defaultOptions ''Game
 
-instance FromJSON Game where
-    parseJSON (Object m) = Game <$> (m .@ "name")
-    parseJSON _          = mzero
+data GameWish = GameWish { friend :: FriendInfo, game :: Game }
 
-data Wishlist = Wishlist [Game]
+newtype Wishlist = Wishlist { wishlistGames :: [Game] }
     deriving Show
 
+-- Not auto-derived, because Steam provides wishlists as a map, while we only want the map values.
 instance FromJSON Wishlist where
-    parseJSON (Object m) = Wishlist <$> (mapM parseJSON (KM.elems m))
+    parseJSON (Object m)                   = Wishlist <$> mapM parseJSON (KM.elems m)
+    parseJSON (Array vector) | null vector = return (Wishlist [])
+    parseJSON _                            = mzero
 
-fetchAndWrite :: SteamID -> IO ()
-fetchAndWrite sid =
-  simpleHttp (mkLink sid) >>= writeFile (show (steamID sid) ++ ".json") . BS.unpack
+httpGetWithCookie :: String -> String -> IO (Response LBS.ByteString)
+httpGetWithCookie cookieContent url = do
+  manager <- newManager tlsManagerSettings
+  preRequest <- parseRequest url
+  now <- getCurrentTime
+  let future = addUTCTime 864000 now
+  let cookie = Cookie {
+    cookie_name = fromString "steamLoginSecure",
+    cookie_value = fromString cookieContent,
+    cookie_expiry_time = future,
+    cookie_domain = fromString "store.steampowered.com",
+    cookie_path = fromString "/",
+    cookie_creation_time = now,
+    cookie_last_access_time = now,
+    cookie_persistent = False,
+    cookie_host_only = False,
+    cookie_secure_only = False,
+    cookie_http_only = False
+  }
+  let request = preRequest { cookieJar = Just (createCookieJar [cookie]) }
+  httpLbs request manager
 
-fetchWishlists :: SteamID -> String -> IO ()
-fetchWishlists sid apiKey =
-  do friendsJson <- simpleHttp ("http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=" ++ apiKey ++ "&steamid=" ++ show (steamID sid) ++ "&relationship=friend")
-     let friends = fromMaybe (FriendList []) (decode friendsJson :: Maybe FriendList)
-     mapM_ fetchAndWrite (ids friends)
 
-readWishlistWith :: [Game] -> BS.ByteString -> [Game]
-readWishlistWith gs ws = maybe [] (intersect gs . (\(Wishlist l) -> l)) (decode ws :: Maybe Wishlist)
+-- The resulting can be used for querying the wishlists, but requires a login cookie in case on non-public profiles.
+mkWishlistQuery :: SteamID -> String
+mkWishlistQuery steamId = concat [prefix, friendQuery, suffix] where
+    prefix      = "https://store.steampowered.com/wishlist/"
+    suffix      = "/wishlistdata/"
+    friendQuery = "profiles/" ++ U.steamid steamId
 
-data WishlistGraph = WG { 
-    numberedFriends :: Map Int Friend, 
-    numberedGames :: Map Int Game, 
-    associations :: GraphLL ()
+fetchWishlist :: String -> SteamID -> IO (Maybe Wishlist)
+fetchWishlist cookieContent accountId = do
+    response <- httpGetWithCookie cookieContent (mkWishlistQuery accountId)
+    return (decode (responseBody response))
+
+fetchWishlistWithOutput :: String -> Int -> Int -> FriendInfo -> IO (Maybe Wishlist)
+fetchWishlistWithOutput cookieContent total index friendInfo = do
+   result <- fetchWishlist cookieContent (SteamID (FI.steamid friendInfo))
+   let success = U.isSuccess result
+   putStrLn (unwords [success, "Queried wishlist for", FI.personaname friendInfo, concat ["(", show index, "/", show total, ")"]])
+   return result
+
+fetchWishlists :: String -> [FriendInfo] -> IO [(FriendInfo, Wishlist)]
+fetchWishlists cookieContent friendInfos =
+  let total = length friendInfos
+  in
+  do
+    wishlists <- mapM (uncurry(fetchWishlistWithOutput cookieContent total)) (zip [1..] friendInfos)
+    return (catMaybes (map (\(friendInfo, maybeWishlist) -> fmap (friendInfo,) maybeWishlist ) (zip friendInfos wishlists)))
+
+matchingGamesByWishlist :: [Game] -> Wishlist -> [Game]
+matchingGamesByWishlist gs = (intersect gs . wishlistGames)
+
+data WishlistGraph = WG {
+    numberedFriends :: Map Int FriendInfo,
+    numberedGames   :: Map Int Game,
+    associations    :: GraphLL ()
 } deriving Show
 
-readWishlistsWith :: [Game] -> [(Friend, BS.ByteString)] -> WishlistGraph
-readWishlistsWith gs fws = 
+buildWishlistGraph :: [(FriendInfo, Wishlist)] -> [Game] -> WishlistGraph
+buildWishlistGraph fws gs =
     WG (fromList (map (second fst) indexedFriends)) (fromList indexedGames) (symmetricClosure (fromMat edges)) where
         indexedFriends = zip [0 ..] fws
         numberOfFriends = length fws
         indexedGames = zip [numberOfFriends ..] gs
         gamesByName = fromList (map (\(x, y) -> (y, x)) indexedGames)
-        edges = map (\(i, (f, w)) -> (i, map ((\j -> (j, ())) . (gamesByName !)) (readWishlistWith gs w))) 
-                    indexedFriends
+        edges = map (\(i, (f, w)) -> (i, map ((, ()) . (gamesByName !)) (matchingGamesByWishlist gs w))) indexedFriends
 
-findMatching :: WishlistGraph -> [(Friend, Game)]
+findMatching :: WishlistGraph -> [(FriendInfo, Game)]
 findMatching (WG nfs ngs graph) = result where
     matching = maximumMatching graph
     numberOfFriends = size nfs
@@ -75,39 +133,88 @@ findMatching (WG nfs ngs graph) = result where
     subAssociations = filter (\(i, _) -> i < numberOfFriends) associations
     result = map (\(i, j) -> (nfs ! i, ngs ! j)) subAssociations
 
-wishlistsFolder :: String
-wishlistsFolder = "wishlists"
-
-processFile :: String -> IO (Friend, BS.ByteString)
-processFile file = do
-    text <- BS.readFile (wishlistsFolder ++ "/" ++ file)
-    return (Profile (read (takeWhile (/= '.') file)), text)
-
-associationsFile :: String
-associationsFile = "associations.txt"
-
-mkAssociations :: IO (Map Friend String)
-mkAssociations = do
-    text <- readFile associationsFile
-    let ls = lines text
-        ps = map ((\(i : rest) -> (Profile (read i), unwords rest)) . words) ls
-    pure (fromList ps)
 
 deleteAll :: Ord k => [k] -> Map k a -> Map k a
 deleteAll ks m = foldr delete m ks
 
-main :: IO ()
-main = do
--- Todo: Technically, the lines in the comments can fetch the wishlists. However, a Steam API restriction blocks requests
--- so we need a reverse proxy or a command line argument.
---    ownId : key : _ <- getArgs
---    fetchWishlists (SteamID (read ownId)) key
-    fs <- getDirectoryContents wishlistsFolder
-    fbs <- mapM processFile (filter (isSuffixOf ".json") fs)
-    gs <- fmap (map Game . lines) (readFile "games.txt")
-    let wlg = readWishlistsWith gs fbs
-        matching = findMatching wlg
-    nameMap <- mkAssociations
-    mapM_ (putStrLn . (\(i, (f, Game g)) -> concat [show i, ": ", show f, " (", fromMaybe "???" (M.lookup f nameMap), ")", " - ", g])) (zip [1..] matching)
-    putStrLn "unmatched: "
-    mapM_ putStrLn (M.elems (deleteAll (map fst matching) nameMap))
+gamesFile :: String
+gamesFile = "games.txt"
+
+excludedFile :: String
+excludedFile = "excluded.txt"
+
+assignmentsFile :: String
+assignmentsFile = "assignments.txt"
+
+messagesFile :: String
+messagesFile = "messages.txt"
+
+readExcluded :: IO [SteamID]
+readExcluded = do
+  text <-  (readFile excludedFile)
+  let excluded = (map SteamID . filter (not . isPrefixOf ['#']) . lines) text
+  return excluded
+
+branchYesNo :: String -> IO a -> IO a -> IO a
+branchYesNo prefix yes no = do
+  answer <- getLine
+  if isPrefixOf prefix (map toLower answer) then
+    yes
+  else
+    no
+
+
+
+waitForDone :: IO ()
+waitForDone = branchYesNo "done" (return ()) waitForDone
+
+startWorkflow :: IO ()
+startWorkflow = do
+  ownId : key : cookieContent : _ <- getArgs
+  let ownAccountId = SteamID ownId
+      apiKey = ApiKey key
+  excluded <- readExcluded
+  friendList <- FL.fetchFriendList apiKey ownAccountId excluded
+  let friendInfos = FL.friendInfos friendList
+  wishlists <- fetchWishlists cookieContent friendInfos
+  attemptToFindAssignmentWorkflow wishlists
+
+attemptToFindAssignmentWorkflow :: [(FriendInfo, Wishlist)] -> IO ()
+attemptToFindAssignmentWorkflow wishlists = do
+  matching <- matchingWorkflow wishlists
+  putStrLn "Here is one suggestion:"
+  printMatching matching
+  putStrLn "unmatched: "
+  mapM_ putStrLn (map (FI.personaname . fst) wishlists \\ map (FI.personaname . fst) matching)
+  putStrLn "Are you satisfied with this suggestion? If yes, type 'y', otherwise adjust the games file, and type 'n'."
+  branchYesNo "y" (assignmentWorkflow matching) (attemptToFindAssignmentWorkflow wishlists)
+
+matchingWorkflow :: [(FriendInfo, Wishlist)] -> IO [(FriendInfo, Game)]
+matchingWorkflow wishlists =
+  fmap (findMatching . buildWishlistGraph wishlists . map Game . lines) (readFile gamesFile)
+
+assignmentWorkflow :: [(FriendInfo, Game)] -> IO ()
+assignmentWorkflow matching =
+  do
+    putStrLn "Writing assignments to file."
+    let assignments = map (\(friendInfo, Game game) -> initial (FI.personaname friendInfo) (FI.loccountrycode friendInfo) game) matching
+    writeFile assignmentsFile (unlines (map show assignments))
+    putStrLn "Written assignments to file. Please fill in the links, and then type 'done'."
+    branchYesNo "done" (createMessagesWorkflow) (assignmentWorkflow matching)
+
+createMessagesWorkflow :: IO ()
+createMessagesWorkflow = do
+  putStrLn "Reading assignments from file."
+  assignments <- fmap (map read . lines) (readFile assignmentsFile)
+  let assignmentTexts = map createMessage assignments
+      outputText = intercalate "\n----------------------------------\n\n" assignmentTexts
+  writeFile messagesFile outputText
+  putStrLn "Written messages to file. The file will be overwritten if you run this program again."
+  let obfuscatedTexts = map (show . obfuscate) assignments
+      obfuscatedOutputText = unlines obfuscatedTexts
+  writeFile "GiftsThisYear.txt" obfuscatedOutputText
+  putStrLn "Written obfuscated messages to file. Save it for future reference. See you next year!"
+
+printMatching :: [(FriendInfo, Game)] -> IO ()
+printMatching matching = do
+  mapM_ (putStrLn . (\(i, (friendInfo, Game g)) -> concat [show i, ": ", FI.personaname friendInfo, " -> ", g])) (zip [1..] matching)

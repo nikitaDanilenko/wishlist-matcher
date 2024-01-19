@@ -26,6 +26,7 @@ source-repository head
 
 library
   exposed-modules:
+      FriendInfo
       FriendList
       Matcher
       Util
@@ -43,6 +44,7 @@ library
     , gwaf
     , http-conduit >2.0 && <3.0
     , text
+    , time
     , transformers >=0.5
     , unordered-containers
   default-language: Haskell2010
@@ -50,6 +52,7 @@ library
 executable wishlist-matcher-exe
   main-is: Main.hs
   other-modules:
+      FriendInfo
       FriendList
       Matcher
       Util
@@ -67,6 +70,7 @@ executable wishlist-matcher-exe
     , gwaf
     , http-conduit >2.0 && <3.0
     , text
+    , time
     , transformers >=0.5
     , unordered-containers
     , wishlist-matcher
