@@ -26,6 +26,7 @@ source-repository head
 
 library
   exposed-modules:
+      Assignment
       FriendInfo
       FriendList
       Matcher
@@ -52,6 +53,7 @@ library
 executable wishlist-matcher-exe
   main-is: Main.hs
   other-modules:
+      Assignment
       FriendInfo
       FriendList
       Matcher
