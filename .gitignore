@@ -24,3 +24,5 @@ cabal.project.local~
 
 wishlists/*.json
 .idea
+
+gifts/Outgoing*
