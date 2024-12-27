@@ -9,14 +9,14 @@ import           Data.Maybe           (catMaybes, fromMaybe)
 import           FriendInfo           (FriendInfo (..), fetchFriendInfo)
 import           Network.HTTP.Conduit (simpleHttp)
 import qualified Util                 as U
-import           Util                 (ApiKey (..), SteamID (..))
+import           Util                 (ApiKey (..), SteamId (..))
 
 newtype FriendList = FriendList { friendInfos :: [FriendInfo] }
     deriving Show
 
-newtype FriendIds = FriendIds { ids :: [SteamID] }
+newtype FriendIds = FriendIds { ids :: [SteamId] }
 
-newtype FriendsResponse = FriendsResponse { friends :: [SteamID] }
+newtype FriendsResponse = FriendsResponse { friends :: [SteamId] }
 
 deriveJSON defaultOptions ''FriendsResponse
 
@@ -25,7 +25,7 @@ newtype GetFriendsListResponse = GetFriendsListResponse { friendslist :: Friends
 
 deriveJSON defaultOptions ''GetFriendsListResponse
 
-fetchFriendList :: ApiKey -> SteamID -> [SteamID] -> IO FriendList
+fetchFriendList :: ApiKey -> SteamId -> [SteamId] -> IO FriendList
 fetchFriendList apiKey accountId excluded = do
     let friendListPath = concat ["http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=", key apiKey, "&steamid=", U.steamid accountId, "&relationship=friend"]
     putStrLn "Fetching friend list"
@@ -37,9 +37,10 @@ fetchFriendList apiKey accountId excluded = do
     friendInfos <- mapM (uncurry (fetchFriendInfoWithOutput apiKey numberOfFriends)) (zip [1 .. ] friendIds)
     return (FriendList (catMaybes friendInfos))
 
-fetchFriendInfoWithOutput :: ApiKey -> Int -> Int -> SteamID -> IO (Maybe FriendInfo)
+fetchFriendInfoWithOutput :: ApiKey -> Int -> Int -> SteamId -> IO (Maybe FriendInfo)
 fetchFriendInfoWithOutput apiKey total index  steamId = do
   friendInfo <- fetchFriendInfo apiKey steamId
   let result = U.isSuccess friendInfo
   putStrLn (unwords [result, "Fetched friend info", show index, "of", show total])
+  putStrLn (unwords ["  Friend info:", show friendInfo])
   return friendInfo

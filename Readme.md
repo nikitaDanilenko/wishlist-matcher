@@ -7,17 +7,16 @@ graph theoretic sense. "Maximum" means "as many as possible", and "matching" des
 # Usage
 
 1. Put your spare games one per line in a file called `games.txt` in the main folder.
+   The expected format is `<game name> -> <appId>`, and there is no error correction,
+   i.e. remove missing app ids beforehand.
 2. Put friends you wish to exclude from the matching one per line in a file called `exclude.txt` in the main folder.
    You can use `#` for line comments for, say, a short explanation of why you exclude a friend.
 3. Run `stack ghci` from the main folder.
 4. Run `:l src/Matcher.hs` in the GHCi prompt.
 5. Gather the following values:
-    1. Your Steam ID
+    1. Your Steam id
     2. Your Steam API key
-    3. The content of your `steamLoginSecure` cookie.
-       For the last step, use a private browsing window and log into Steam. 
-       Then, open the developer tools and fetch the cookie content with the above name.
-6. Run `withArgs [ <yourSteamId>, <apiKey>, <cookieContent> ] startWorkflow`
+6. Run `withArgs [ <yourSteamId>, <apiKey> ] startWorkflow`
 7. If everything works, the script will fetch your friends, their wishlists, and compute a matching.
    It will then ask you to fill out the links in a file `assignments.txt`.
    Once you finished, the script will continue, and create two additional files:
