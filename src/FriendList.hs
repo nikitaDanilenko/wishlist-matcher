@@ -42,4 +42,5 @@ fetchFriendInfoWithOutput apiKey total index  steamId = do
   friendInfo <- fetchFriendInfo apiKey steamId
   let result = U.isSuccess friendInfo
   putStrLn (unwords [result, "Fetched friend info", show index, "of", show total])
+  putStrLn (unwords ["  Friend info:", show friendInfo])
   return friendInfo

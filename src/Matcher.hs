@@ -80,11 +80,10 @@ httpGetWithCookie cookieContent url = do
 
 
 -- The resulting can be used for querying the wishlists, but requires a login cookie in case on non-public profiles.
-mkWishlistQuery :: SteamID -> String
-mkWishlistQuery steamId = concat [prefix, friendQuery, suffix] where
-    prefix      = "https://store.steampowered.com/wishlist/"
-    suffix      = "/wishlistdata/"
-    friendQuery = "profiles/" ++ U.steamid steamId
+mkWishlistQuery :: SteamID -> ApiKey -> String
+mkWishlistQuery steamId apiKey = concat [prefix, key apiKey friendQuery] where
+    prefix      = "https://api.steampowered.com/IWishlistService/GetWishlist/v1/?key="
+    friendQuery = "steamid=" ++ U.steamid steamId
 
 fetchWishlist :: String -> SteamID -> IO (Maybe Wishlist)
 fetchWishlist cookieContent accountId = do
