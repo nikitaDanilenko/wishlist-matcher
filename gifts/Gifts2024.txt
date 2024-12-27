@@ -1,0 +1,43 @@
+Assignment {friendName = "magerquark", friendCountryCode = Nothing, gameName = "Day of the Tentacle", link = "...Zyrpx"}
+Assignment {friendName = "Makina", friendCountryCode = Just "US", gameName = "Generation Zero", link = "...NnsXw"}
+Assignment {friendName = "Stuhl-o-mator", friendCountryCode = Just "DE", gameName = "Minecraft: Story Mode - A Telltale Games Series", link = "...6ZE4c"}
+Assignment {friendName = "=Snappy=", friendCountryCode = Nothing, gameName = "Zombotron", link = "...NaPH3"}
+Assignment {friendName = "Todeskuh", friendCountryCode = Just "DE", gameName = "Persona 4 Golden", link = "...KAMZr"}
+Assignment {friendName = "The ZooZ", friendCountryCode = Just "PT", gameName = "Quest Hunter (Steam)", link = "...KHI5L"}
+Assignment {friendName = "Duder 2", friendCountryCode = Just "US", gameName = "This War of Mine", link = "...Bpfkt"}
+Assignment {friendName = "Nex Owl", friendCountryCode = Just "NZ", gameName = "STRAFE: Millennium Edition", link = "...xtxA8"}
+Assignment {friendName = "proudlarry", friendCountryCode = Just "US", gameName = "DUCATI - 90th Anniversary", link = "...DBbxw"}
+Assignment {friendName = "ArmyXomuiL", friendCountryCode = Just "RU", gameName = "No Time To Explain Remastered", link = "...F4t3M"}
+Assignment {friendName = "brb -h", friendCountryCode = Just "RU", gameName = "Vampire: The Masquerade \8211 Coteries of New York", link = "...h3mcB"}
+Assignment {friendName = "WonderRabbit", friendCountryCode = Just "AU", gameName = "HIVESWAP: Act 1", link = "...ZYbEF"}
+Assignment {friendName = "essen", friendCountryCode = Nothing, gameName = "Mafia: Definitive Edition", link = "...zDaDH"}
+Assignment {friendName = "Ego.CZ", friendCountryCode = Just "CZ", gameName = "Metro Exodus: Enhanced", link = "...5c7uq"}
+Assignment {friendName = "[ZooM\178] aikeN", friendCountryCode = Just "FR", gameName = "Nioh 2 \8211 The Complete Edition", link = "...p52wf"}
+Assignment {friendName = "Stubbsy", friendCountryCode = Just "GB", gameName = "The Adventure Pals", link = "...ux6sR"}
+Assignment {friendName = "tovija", friendCountryCode = Just "DE", gameName = "Lost in Play", link = "...pqPe2"}
+Assignment {friendName = "RoughOggy", friendCountryCode = Nothing, gameName = "Monster Prom", link = "...ZtTnr"}
+Assignment {friendName = "vicdaddy", friendCountryCode = Nothing, gameName = "DEATH STRANDING DIRECTOR'S CUT", link = "...F2nyv"}
+Assignment {friendName = "Kins", friendCountryCode = Just "BR", gameName = "Soulstice", link = "...tTHED"}
+Assignment {friendName = "Bowling4Kleers", friendCountryCode = Just "US", gameName = "Rebuild 3: Gangs of Deadsville", link = "...cwbYE"}
+Assignment {friendName = "Vardog", friendCountryCode = Just "IT", gameName = "Assault Android Cactus", link = "...6zAS5"}
+Assignment {friendName = "Varmit", friendCountryCode = Just "PL", gameName = "Q.U.B.E. 2", link = "...bKatF"}
+Assignment {friendName = "snexalle", friendCountryCode = Nothing, gameName = "Golden Light", link = "...aspvk"}
+Assignment {friendName = "\1040\1083\1077\1082\1089\1072\1085\1076\1088", friendCountryCode = Just "RU", gameName = "Cathedral", link = "...qAMdH"}
+Assignment {friendName = "assoron", friendCountryCode = Nothing, gameName = "BATTLETECH", link = "...c3NUP"}
+Assignment {friendName = "Lukas", friendCountryCode = Nothing, gameName = "Cris Tales", link = "...M7chA"}
+Assignment {friendName = "mr.simpson", friendCountryCode = Just "JP", gameName = "Absolver", link = "...hGAXz"}
+Assignment {friendName = "GuteN8", friendCountryCode = Just "DE", gameName = "Project Wingman", link = "...rwnCy"}
+Assignment {friendName = "GiRaf", friendCountryCode = Just "DE", gameName = "OlliOlli World - Rad Edition", link = "...YH8RZ"}
+Assignment {friendName = "Destrudo", friendCountryCode = Nothing, gameName = "Disco Elysium - The Final Cut", link = "...CrCPc"}
+Assignment {friendName = "Akay4444", friendCountryCode = Just "US", gameName = "Darksiders II Deathinitive Edition", link = "...KWChG"}
+Assignment {friendName = "chacaldor", friendCountryCode = Just "JP", gameName = "SYNTHETIK: Legion Rising", link = "...XhcMP"}
+Assignment {friendName = "Sheep", friendCountryCode = Just "DE", gameName = "Endzone \8211 A World Apart", link = "...rMBMU"}
+Assignment {friendName = "Look", friendCountryCode = Nothing, gameName = ">observer_", link = "...mVfhA"}
+Assignment {friendName = "[BLG] Alisa", friendCountryCode = Just "US", gameName = "Machinarium Collector's Edition", link = "...VEyAU"}
+Assignment {friendName = "Shumno Takumi", friendCountryCode = Just "BR", gameName = "Shenmue I & II", link = "...c3HAS"}
+Assignment {friendName = "ivylin1997", friendCountryCode = Nothing, gameName = "THOTH", link = "...CTn5A"}
+Assignment {friendName = "Catherine Chu", friendCountryCode = Nothing, gameName = "Hand of Fate 2", link = "...BRB8N"}
+Assignment {friendName = "Jose", friendCountryCode = Nothing, gameName = "Hello Neighbor + Hello Neighbor: Hide and Seek", link = "...A4zGd"}
+Assignment {friendName = "Stealth\9829", friendCountryCode = Nothing, gameName = "World of Goo", link = "...Y4naE"}
+Assignment {friendName = "ytu12", friendCountryCode = Nothing, gameName = "Dark Pictures Anthology: House of Ashes", link = "...ftmKD"}
+Assignment {friendName = "Dax-chan", friendCountryCode = Just "DE", gameName = "Kentucky Route Zero", link = "...EdGWV"}
