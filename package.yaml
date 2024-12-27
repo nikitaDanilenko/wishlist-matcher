@@ -32,6 +32,7 @@ dependencies:
   # Todo: This is likely unnecessary
   - directory
   - time
+  - split
 
 allow-newer: true
 
