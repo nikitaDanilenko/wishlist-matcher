@@ -39,7 +39,7 @@ import           Network.HTTP.Conduit      (Cookie (..), HttpException,
                                             tlsManagerSettings)
 import           System.Environment        (getArgs, withArgs)
 import qualified Util                      as U
-import           Util                      (ApiKey (..), SteamID (..))
+import           Util                      (ApiKey (..), SteamId (..))
 
 data Game = Game { name :: String, appId :: String }
     deriving (Show, Eq, Ord)
@@ -74,19 +74,19 @@ httpGet url = do
   httpLbs request manager
 
 -- The resulting can be used for querying the wishlists, but requires a login cookie in case on non-public profiles.
-mkWishlistQuery :: ApiKey -> SteamID -> String
+mkWishlistQuery :: ApiKey -> SteamId -> String
 mkWishlistQuery apiKey steamId = concat [prefix, key apiKey, friendQuery] where
     prefix      = "https://api.steampowered.com/IWishlistService/GetWishlist/v1/?key="
     friendQuery = "&steamid=" ++ U.steamid steamId
 
-fetchWishlist :: ApiKey -> SteamID -> IO (Maybe Wishlist)
+fetchWishlist :: ApiKey -> SteamId -> IO (Maybe Wishlist)
 fetchWishlist apiKey accountId = do
     getResponse <- httpGet (mkWishlistQuery apiKey accountId)
     return (fmap response (decode (responseBody getResponse)))
 
 fetchWishlistWithOutput :: ApiKey -> Int -> Int -> FriendInfo -> IO (Maybe Wishlist)
 fetchWishlistWithOutput apiKey total index friendInfo = do
-   result <- fetchWishlist apiKey (SteamID (FI.steamid friendInfo))
+   result <- fetchWishlist apiKey (SteamId (FI.steamid friendInfo))
    let success = U.isSuccess result
    putStrLn (unwords [success, "Queried wishlist for", FI.personaname friendInfo, concat ["(", show index, "/", show total, ")"]])
    return result
@@ -145,10 +145,10 @@ assignmentsFile = "assignments.txt"
 messagesFile :: String
 messagesFile = "messages.txt"
 
-readExcluded :: IO [SteamID]
+readExcluded :: IO [SteamId]
 readExcluded = do
   text <-  (readFile excludedFile)
-  let excluded = (map SteamID . filter (not . isPrefixOf ['#']) . lines) text
+  let excluded = (map SteamId . filter (not . isPrefixOf ['#']) . lines) text
   return excluded
 
 branchYesNo :: String -> IO a -> IO a -> IO a
@@ -167,7 +167,7 @@ waitForDone = branchYesNo "done" (return ()) waitForDone
 startWorkflow :: IO ()
 startWorkflow = do
   ownId : key : _ <- getArgs
-  let ownAccountId = SteamID ownId
+  let ownAccountId = SteamId ownId
       apiKey = ApiKey key
   excluded <- readExcluded
   friendList <- FL.fetchFriendList apiKey ownAccountId excluded

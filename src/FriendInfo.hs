@@ -7,7 +7,7 @@ import           Data.Aeson.TH        (defaultOptions, deriveJSON)
 import           Data.Maybe           (listToMaybe)
 import           Network.HTTP.Conduit (simpleHttp)
 import qualified Util                 as U
-import           Util                 (ApiKey (..), SteamID (..))
+import           Util                 (ApiKey (..), SteamId (..))
 
 -- The naming is that of the API.
 data FriendInfo = FriendInfo {
@@ -26,7 +26,7 @@ newtype GetPlayerSummariesResponse = GetPlayerSummariesResponse { response :: Pl
 
 deriveJSON defaultOptions ''GetPlayerSummariesResponse
 
-fetchFriendInfo :: ApiKey -> SteamID -> IO (Maybe FriendInfo)
+fetchFriendInfo :: ApiKey -> SteamId -> IO (Maybe FriendInfo)
 fetchFriendInfo apiKey accountId = do
     let friendInfoPath = concat ["http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=", key apiKey, "&steamids=", U.steamid accountId]
     friendsJson <- simpleHttp friendInfoPath

@@ -11,10 +11,10 @@ import           Data.Char        (chr)
 newtype ApiKey = ApiKey { key :: String }
 
 -- The naming is consistent with the API
-newtype SteamID = SteamID { steamid :: String }
+newtype SteamId = SteamId { steamid :: String }
     deriving (Show, Eq)
 
-deriveJSON defaultOptions ''SteamID
+deriveJSON defaultOptions ''SteamId
 
 -- 10004 is a checkmark, and 10008 is a cross.
 isSuccess :: Maybe a -> String
