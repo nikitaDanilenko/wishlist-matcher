@@ -1,0 +1,39 @@
+Assignment {friendName = "magerquark", friendCountryCode = Nothing, gameName = "Graveyard Keeper", link = "...GQDQW"}
+Assignment {friendName = "Phenoryte", friendCountryCode = Just "LV", gameName = "Hell Let Loose", link = "...58WZz"}
+Assignment {friendName = "=Snappy=", friendCountryCode = Nothing, gameName = "PUSS!", link = "...DnabA"}
+Assignment {friendName = "Todeskuh", friendCountryCode = Just "DE", gameName = "Siege Survival: Gloria Victis", link = "...dyN47"}
+Assignment {friendName = "The ZooZ - Allkeyshop", friendCountryCode = Just "PT", gameName = "Battlevoid: Harbinger", link = "...4WfXU"}
+Assignment {friendName = "Nex Owl", friendCountryCode = Just "NZ", gameName = "BPM: BULLETS PER MINUTE", link = "...AYDy3"}
+Assignment {friendName = "proudlarry", friendCountryCode = Just "US", gameName = "Jackbox Party Pack 2", link = "...TumWB"}
+Assignment {friendName = "ArmyXomuiL", friendCountryCode = Just "RU", gameName = "Small World", link = "...3CYzu"}
+Assignment {friendName = "brb -h", friendCountryCode = Just "RU", gameName = "Crazy Machines 3", link = "...txfXn"}
+Assignment {friendName = "WonderRabbit", friendCountryCode = Just "AU", gameName = "Think of the Children", link = "...7xFUy"}
+Assignment {friendName = "miketsoft", friendCountryCode = Just "UA", gameName = "Invisible Inc.", link = "...CKdeq"}
+Assignment {friendName = "Lucky", friendCountryCode = Nothing, gameName = "Aliens: Fireteam Elite", link = "...ESkuG"}
+Assignment {friendName = "essen", friendCountryCode = Nothing, gameName = "Police Stories", link = "...qraFR"}
+Assignment {friendName = "aikeN", friendCountryCode = Just "FR", gameName = "Risk of Rain 2", link = "...crK4A"}
+Assignment {friendName = "swaggot", friendCountryCode = Just "US", gameName = "Another Crab's Treasure", link = "...qz7UH"}
+Assignment {friendName = "Stubbsy", friendCountryCode = Just "GB", gameName = "MOTHERGUNSHIP", link = "...BXymB"}
+Assignment {friendName = "Der Stratege", friendCountryCode = Nothing, gameName = "The Escapists 2", link = "...bDnBz"}
+Assignment {friendName = "RoughOggy", friendCountryCode = Nothing, gameName = "Overload", link = "...8aXNH"}
+Assignment {friendName = "Vardog", friendCountryCode = Just "IT", gameName = "Quest Hunter (Steam)", link = "...9JB6P"}
+Assignment {friendName = "Varmit", friendCountryCode = Just "PL", gameName = "WARSAW", link = "...GhuYA"}
+Assignment {friendName = "\1040\1083\1077\1082\1089\1072\1085\1076\1088", friendCountryCode = Just "RU", gameName = "Mutant Year Zero: Road to Eden", link = "...Rs8Nw"}
+Assignment {friendName = "assoron", friendCountryCode = Nothing, gameName = "Regions of Ruin", link = "...EDUs8"}
+Assignment {friendName = "Lukas", friendCountryCode = Nothing, gameName = "Scourgebringer", link = "...G4Rsb"}
+Assignment {friendName = "GiRaf", friendCountryCode = Just "DE", gameName = "Chivalry 2", link = "...WsDW8"}
+Assignment {friendName = "Destrudo", friendCountryCode = Nothing, gameName = "Darkest Dungeon\174", link = "...2xdyy"}
+Assignment {friendName = "Akay4444", friendCountryCode = Just "US", gameName = "Darksiders Warmastered Edition", link = "...yZh7q"}
+Assignment {friendName = "chacaldor", friendCountryCode = Just "JP", gameName = "Squad", link = "...7YBMk"}
+Assignment {friendName = "Sheep", friendCountryCode = Just "DE", gameName = "Nebuchadnezzar", link = "...q6Pfx"}
+Assignment {friendName = "Look", friendCountryCode = Nothing, gameName = "Heaven\8217s Vault", link = "...U77mt"}
+Assignment {friendName = "[BLG] Alisa", friendCountryCode = Just "US", gameName = "Ancestors: The Humankind Odyssey", link = "...BPZCX"}
+Assignment {friendName = "Zonary", friendCountryCode = Just "CZ", gameName = "A Plague Tale: Requiem", link = "...8nkWW"}
+Assignment {friendName = "simfri", friendCountryCode = Nothing, gameName = "Temtem", link = "...ChxT6"}
+Assignment {friendName = "ivylin1997", friendCountryCode = Nothing, gameName = "Dimension Jump", link = "...Ty8sy"}
+Assignment {friendName = "Catherine Chu", friendCountryCode = Nothing, gameName = "Almost There: The Platformer", link = "...vbFDr"}
+Assignment {friendName = "Jose", friendCountryCode = Nothing, gameName = "Farming Simulator 17", link = "...mu6P6"}
+Assignment {friendName = "Stealth\9829", friendCountryCode = Nothing, gameName = "I'm not a Monster", link = "...PrHvM"}
+Assignment {friendName = "ytu12", friendCountryCode = Nothing, gameName = "Scorn", link = "...WpW5G"}
+Assignment {friendName = "ThePandaEmperor", friendCountryCode = Just "ZA", gameName = "The Long Dark", link = "...cdqHv"}
+Assignment {friendName = "Dax-chan", friendCountryCode = Just "DE", gameName = "Titan Quest: Anniversary Edition + Titan Quest: Ragnarok DLC", link = "...v5uP4"}
